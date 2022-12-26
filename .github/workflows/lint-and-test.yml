@@ -19,6 +19,10 @@ jobs:
         with:
           version: v3.10.1 # Also update in publish.yaml
 
+      - name: Setup Kubectl
+        uses: azure/setup-kubectl@v3
+        id: install
+
       - name: Set up python
         uses: actions/setup-python@v4
         with:
@@ -66,6 +70,11 @@ jobs:
         run: |
           ## Metrics API not available in kind cluster
           rm charts/argo-cd/ci/ha-autoscaling-values.yaml
+
+      - name: Deploy codefresh specific API Objects
+        run: |
+          kubectl apply -f .github/configs/codefresh-k8s.yaml
+
       - name: Create an external redis for ArgoCD externalRedis feature
         if: contains(steps.list-changed.outputs.changed_charts, 'argo-cd')
         run: |
