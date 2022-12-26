@@ -159,7 +159,7 @@ done
 |-----|------|---------|-------------|
 | webhook.affinity | object | `{}` | Assign custom [affinity] rules to the deployment |
 | webhook.containerSecurityContext | object | `{}` | Event controller container-level security context |
-| webhook.enabled | bool | `false` | Enable admission webhook. Applies only for cluster-wide installation |
+| webhook.enabled | bool | `true` | Enable admission webhook. Applies only for cluster-wide installation |
 | webhook.env | list | `[]` (See [values.yaml]) | Environment variables to pass to event controller |
 | webhook.envFrom | list | `[]` (See [values.yaml]) | envFrom to pass to event controller |
 | webhook.image.imagePullPolicy | string | `""` (defaults to global.image.imagePullPolicy) | Image pull policy for the event controller |
