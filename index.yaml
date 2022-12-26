@@ -13565,6 +13565,29 @@ entries:
     version: 2.0.5
   - annotations:
       artifacthub.io/changes: |
+        - "[Changed]: Upgrade Argo events controller to v1.7.2-cap-CR-14600"
+    apiVersion: v2
+    appVersion: v1.7.2-cap-CR-14600
+    created: "2022-12-26T10:38:02.587812812Z"
+    description: A Helm chart for Argo Events, the event-driven workflow automation
+      framework
+    digest: bde7c109fa9f488b0ea1a027346dbf5e1d44f79bcccf4d82685719df544e8d49
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-events/assets/logo.png
+    keywords:
+    - argoproj
+    - argo-events
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-events
+    sources:
+    - https://github.com/argoproj/argo-events
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-events-2.0.5-1-cf-init/argo-events-2.0.5-1-cf-init.tgz
+    version: 2.0.5-1-cf-init
+  - annotations:
+      artifacthub.io/changes: |
         - "[Changed]: Helm chart maintainers standardized to argoproj"
     apiVersion: v2
     appVersion: v1.7.1
@@ -19443,4 +19466,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2022-12-26T08:33:24.699970187Z"
+generated: "2022-12-26T10:38:02.589162528Z"
