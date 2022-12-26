@@ -73,7 +73,8 @@ jobs:
 
       - name: Deploy codefresh specific API Objects
         run: |
-          kubectl apply -f .github/configs/codefresh-k8s.yaml
+          kubectl create ns ${{ github.base_ref }}
+          kubectl -n ${{ github.base_ref }} apply -f .github/configs/codefresh-k8s.yaml
 
       - name: Create an external redis for ArgoCD externalRedis feature
         if: contains(steps.list-changed.outputs.changed_charts, 'argo-cd')
@@ -82,5 +83,5 @@ jobs:
           helm repo add bitnami https://charts.bitnami.com/bitnami
           helm install redis bitnami/redis --wait --namespace redis --set auth.password=argocd --set architecture=standalone
       - name: Run chart-testing (install)
-        run: ct install --config ./.github/configs/ct-install.yaml --target-branch ${{ github.base_ref }}
+        run: ct install --config ./.github/configs/ct-install.yaml --target-branch ${{ github.base_ref }} --namespace ${{ github.base_ref }}
         if: steps.list-changed.outputs.changed == 'true'
