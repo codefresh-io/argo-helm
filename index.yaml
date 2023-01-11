@@ -15622,6 +15622,26 @@ entries:
       artifacthub.io/changes: |
         - "[Added]: Helm helper function to allow image registry to be absent"
     apiVersion: v2
+    appVersion: v3.4-cap-CR-15902
+    created: "2023-01-11T13:22:58.47129323Z"
+    description: A Helm chart for Argo Workflows
+    digest: 0c8d0602b97767d5bacb9d6ac822cf5b6ee2510b504f0f8445865ab6743f7be6
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-workflows-0.22.8-1-cf-init/argo-workflows-0.22.8-1-cf-init.tgz
+    version: 0.22.8-1-cf-init
+  - annotations:
+      artifacthub.io/changes: |
+        - "[Added]: Helm helper function to allow image registry to be absent"
+    apiVersion: v2
     appVersion: v3.4.4
     created: "2023-01-11T12:26:37.845612046Z"
     description: A Helm chart for Argo Workflows
@@ -19486,4 +19506,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2023-01-11T12:26:37.851111046Z"
+generated: "2023-01-11T13:22:58.472987636Z"
