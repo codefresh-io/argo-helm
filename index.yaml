@@ -3003,6 +3003,38 @@ entries:
         - "[Deprecated]: Generic configuration via server.config"
         - "[Deprecated]: Argo RBAC configuration via server.rbacConfig"
     apiVersion: v2
+    appVersion: v2.4.15-cap-CR-16709-init-app-proxy
+    created: "2023-01-23T07:54:50.532451116Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.22.2
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 54c04cb2f79bb13493d93925fc272a5631b86b5cdbb8597a2681a2ce32ce68b6
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-5.7.0-2-CR-16709-init-app-proxy/argo-cd-5.7.0-2-CR-16709-init-app-proxy.tgz
+    version: 5.7.0-2-CR-16709-init-app-proxy
+  - annotations:
+      artifacthub.io/changes: |
+        - "[Added]: Configuration sections configs.cm and configs.rbac"
+        - "[Deprecated]: Generic configuration via server.config"
+        - "[Deprecated]: Argo RBAC configuration via server.rbacConfig"
+    apiVersion: v2
     appVersion: v2.4.15-cap-CR-15677-rollout-rollback
     created: "2022-12-26T08:33:24.697826358Z"
     dependencies:
@@ -19506,4 +19538,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2023-01-11T13:22:58.472987636Z"
+generated: "2023-01-23T07:54:50.534465416Z"
