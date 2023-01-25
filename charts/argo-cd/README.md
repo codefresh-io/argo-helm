@@ -1064,6 +1064,7 @@ If you want to use an existing Redis (eg. a managed service from a cloud provide
 | notifications.cm.create | bool | `true` | Whether helm chart creates controller config map |
 | notifications.containerSecurityContext | object | See [values.yaml] | Notification controller container-level security Context |
 | notifications.context | object | `{}` | Define user-defined context |
+| notifications.deploymentAnnotations | object | `{}` | Annotations to be applied to the notifications controller Deployment |
 | notifications.enabled | bool | `false` | Enable notifications controller |
 | notifications.extraArgs | list | `[]` | Extra arguments to provide to the controller |
 | notifications.extraEnv | list | `[]` | Additional container environment variables |
