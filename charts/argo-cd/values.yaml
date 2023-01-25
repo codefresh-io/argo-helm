@@ -2174,8 +2174,12 @@ applicationSet:
     metricsAddr: :8080
     # -- The default health check port
     probeBindAddr: :8081
+    # -- The default leader election setting
+    enableLeaderElection: false
     # -- How application is synced between the generator and the cluster
     policy: sync
+    # -- Print debug logs
+    debug: false
     # -- Enable dry run mode
     dryRun: false
 
@@ -2248,56 +2252,24 @@ applicationSet:
     # If not set and create is true, a name is generated using the fullname template
     name: ""
 
-  # -- Annotations to be added to ApplicationSet controller Deployment
-  deploymentAnnotations: {}
-
   # -- Annotations for the controller pods
   podAnnotations: {}
 
   # -- Labels for the controller pods
   podLabels: {}
 
-  # -- ApplicationSet controller container-level security context
-  # @default -- See [values.yaml]
-  containerSecurityContext:
-    runAsNonRoot: true
-    readOnlyRootFilesystem: true
-    allowPrivilegeEscalation: false
-    seccompProfile:
-      type: RuntimeDefault
-    capabilities:
-      drop:
-      - ALL
+  # -- Pod Security Context
+  podSecurityContext: {}
+    # fsGroup: 2000
 
-  ## Probes for ApplicationSet controller (optional)
-  ## Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
-  readinessProbe:
-    # -- Enable Kubernetes liveness probe for ApplicationSet controller
-    enabled: false
-    # -- Number of seconds after the container has started before [probe] is initiated
-    initialDelaySeconds: 10
-    # -- How often (in seconds) to perform the [probe]
-    periodSeconds: 10
-    # -- Number of seconds after which the [probe] times out
-    timeoutSeconds: 1
-    # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
-    successThreshold: 1
-    # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
-    failureThreshold: 3
-
-  livenessProbe:
-    # -- Enable Kubernetes liveness probe for ApplicationSet controller
-    enabled: false
-    # -- Number of seconds after the container has started before [probe] is initiated
-    initialDelaySeconds: 10
-    # -- How often (in seconds) to perform the [probe]
-    periodSeconds: 10
-    # -- Number of seconds after which the [probe] times out
-    timeoutSeconds: 1
-    # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
-    successThreshold: 1
-    # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
-    failureThreshold: 3
+  # -- Security Context
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
 
   # -- Resource limits and requests for the controller pods.
   resources: {}
