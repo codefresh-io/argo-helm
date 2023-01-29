@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: v1.4.0
+appVersion: v1.4.0-cap-sw
 description: A Helm chart for Argo Rollouts
 name: argo-rollouts
-version: 2.22.1-0-cf-init
+version: 2.22.1-1-cap-sw
 home: https://github.com/argoproj/argo-helm
 icon: https://argoproj.github.io/argo-rollouts/assets/logo.png
 keywords:

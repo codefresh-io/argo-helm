@@ -64,7 +64,7 @@ controller:
     # -- Registry to use
     registry: quay.io
     # -- Repository to use
-    repository: argoproj/argo-rollouts
+    repository: codefresh/argo-rollouts
     # -- Overrides the image tag (default is the chart appVersion)
     tag: ""
     # -- Image pull policy
@@ -244,7 +244,7 @@ dashboard:
     # -- Registry to use
     registry: quay.io
     # --  Repository to use
-    repository: argoproj/kubectl-argo-rollouts
+    repository: codefresh/kubectl-argo-rollouts
     # -- Overrides the image tag (default is the chart appVersion)
     tag: ""
     # -- Image pull policy
