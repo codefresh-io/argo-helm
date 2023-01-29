@@ -77,7 +77,7 @@ If dashboard is installed by `--set dashboard.enabled=true`, checkout the argo-r
 | controller.extraEnv | list | `[]` | Additional environment variables for rollouts-controller. A list of name/value maps. |
 | controller.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | controller.image.registry | string | `"quay.io"` | Registry to use |
-| controller.image.repository | string | `"argoproj/argo-rollouts"` | Repository to use |
+| controller.image.repository | string | `"codefresh/argo-rollouts"` | Repository to use |
 | controller.image.tag | string | `""` | Overrides the image tag (default is the chart appVersion) |
 | controller.initContainers | list | `[]` | Init containers to add to the rollouts controller pod |
 | controller.livenessProbe | object | See [values.yaml] | Configure liveness [probe] for the controller |
@@ -118,7 +118,7 @@ If dashboard is installed by `--set dashboard.enabled=true`, checkout the argo-r
 | dashboard.extraEnv | list | `[]` | Additional environment variables for rollouts-dashboard. A list of name/value maps. |
 | dashboard.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | dashboard.image.registry | string | `"quay.io"` | Registry to use |
-| dashboard.image.repository | string | `"argoproj/kubectl-argo-rollouts"` | Repository to use |
+| dashboard.image.repository | string | `"codefresh/kubectl-argo-rollouts"` | Repository to use |
 | dashboard.image.tag | string | `""` | Overrides the image tag (default is the chart appVersion) |
 | dashboard.ingress.annotations | object | `{}` | Dashboard ingress annotations |
 | dashboard.ingress.enabled | bool | `false` | Enable dashboard ingress support |
