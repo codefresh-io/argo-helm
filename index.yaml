@@ -1588,6 +1588,38 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Change default value for global.tolerations, from object to array.
+    apiVersion: v2
+    appVersion: v2.6.0-cap-CR-17237
+    created: "2023-04-09T15:21:07.11749058Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.22.5
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 3bddcb1c10159d21fe988b4fcb4d7d3c43122a4154c1dc5282e89e29329d4175
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-5.28.1-1-cap-CR-17237/argo-cd-5.28.1-1-cap-CR-17237.tgz
+    version: 5.28.1-1-cap-CR-17237
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Upgrade Argo CD to v2.6.6
     apiVersion: v2
@@ -19645,4 +19677,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2023-03-22T06:38:11.581361711Z"
+generated: "2023-04-09T15:21:07.120901072Z"
