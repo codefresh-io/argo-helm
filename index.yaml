@@ -1589,6 +1589,38 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: fixed
+          description: Send app deleted event to codefresh platform.
+    apiVersion: v2
+    appVersion: v2.6.0-cap-CR-18430-del-app
+    created: "2023-05-22T12:59:10.435475556Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.22.5
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 8dfba8abfd0554789fe950c6ad33d5561a794bcbd24b73b1815c7b81022d6f7b
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-5.29.2-cap-CR-18430/argo-cd-5.29.2-cap-CR-18430.tgz
+    version: 5.29.2-cap-CR-18430
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
           description: Use default value for configs.cm.application.instanceLabelKey, instead of overwriting it.
     apiVersion: v2
     appVersion: v2.6.0-cap-CR-17237
@@ -19730,4 +19762,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2023-04-20T14:55:26.874726866Z"
+generated: "2023-05-22T12:59:10.43950579Z"
