@@ -18,13 +18,10 @@ jobs:
         uses: azure/setup-helm@v3
         with:
           version: v3.10.1 # Also update in publish.yaml
-<<<<<<< HEAD
 
       - name: Setup Kubectl
         uses: azure/setup-kubectl@v3
         id: install
-=======
->>>>>>> tags/argo-events-2.0.9
 
       - name: Set up python
         uses: actions/setup-python@v4
@@ -69,8 +66,6 @@ jobs:
         with:
           config: .github/configs/kind-config.yaml
 
-<<<<<<< HEAD
-=======
       - name: Deploy latest ArgoCD CRDs when testing ArgoCD extensions
         if: |
           contains(steps.list-changed.outputs.changed_charts, 'argocd-image-updater') ||
@@ -80,7 +75,6 @@ jobs:
           helm dependency build charts/argo-cd/
           helm template charts/argo-cd/ --set server.extensions.enabled=true -s templates/crds/* | kubectl apply -f -
 
->>>>>>> tags/argo-events-2.0.9
       - name: Skip HPA tests of ArgoCD
         if: contains(steps.list-changed.outputs.changed_charts, 'argo-cd')
         run: |
@@ -98,6 +92,7 @@ jobs:
           kubectl create namespace redis
           helm repo add bitnami https://charts.bitnami.com/bitnami
           helm install redis bitnami/redis --wait --namespace redis --set auth.password=argocd --set architecture=standalone
+
       - name: Run chart-testing (install)
         run: ct install --config ./.github/configs/ct-install.yaml --target-branch ${{ github.base_ref }} --namespace ${{ github.base_ref }}
         if: steps.list-changed.outputs.changed == 'true'
