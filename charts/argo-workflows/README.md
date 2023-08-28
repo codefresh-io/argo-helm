@@ -41,7 +41,11 @@ Fields to note:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| crds.annotations | object | `{}` | Annotations to be added to all CRDs |
+| crds.install | bool | `true` | Install and upgrade CRDs |
+| crds.keep | bool | `true` | Keep CRDs on chart uninstall |
 | createAggregateRoles | bool | `true` | Create clusterroles that extend existing clusterroles to interact with argo-cd crds |
+| extraObjects | list | `[]` | Array of extra K8s manifests to deploy |
 | fullnameOverride | string | `nil` | String to fully override "argo-workflows.fullname" template |
 | images.pullPolicy | string | `"Always"` | imagePullPolicy to apply to all containers |
 | images.pullSecrets | list | `[]` | Secrets with credentials to pull images from a private registry |
@@ -58,6 +62,7 @@ Fields to note:
 | workflow.rbac.create | bool | `true` | Adds Role and RoleBinding for the above specified service account to be able to run workflows. A Role and Rolebinding pair is also created for each namespace in controller.workflowNamespaces (see below) |
 | workflow.serviceAccount.annotations | object | `{}` | Annotations applied to created service account |
 | workflow.serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
+| workflow.serviceAccount.labels | object | `{}` | Labels applied to created service account |
 | workflow.serviceAccount.name | string | `"argo-workflow"` | Service account which is used to run workflows |
 
 ### Workflow Controller
@@ -103,12 +108,15 @@ Fields to note:
 | controller.podSecurityContext | object | `{}` | SecurityContext to set on the controller pods |
 | controller.priorityClassName | string | `""` | Leverage a PriorityClass to ensure your pods survive resource shortages. |
 | controller.rbac.create | bool | `true` | Adds Role and RoleBinding for the controller. |
+| controller.rbac.secretWhitelist | list | `[]` | Allows controller to get, list, and watch certain k8s secrets |
 | controller.replicas | int | `1` | The number of controller pods to run |
 | controller.resourceRateLimit | object | `{}` | Globally limits the rate at which pods are created. This is intended to mitigate flooding of the Kubernetes API server by workflows with a large amount of parallel nodes. |
 | controller.resources | object | `{}` | Resource limits and requests for the controller |
+| controller.retentionPolicy | object | `{}` | Workflow retention by number of workflows |
 | controller.securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"readOnlyRootFilesystem":true,"runAsNonRoot":true}` | the controller container's securityContext |
 | controller.serviceAccount.annotations | object | `{}` | Annotations applied to created service account |
 | controller.serviceAccount.create | bool | `true` | Create a service account for the controller |
+| controller.serviceAccount.labels | object | `{}` | Labels applied to created service account |
 | controller.serviceAccount.name | string | `""` | Service account name |
 | controller.serviceAnnotations | object | `{}` | Annotations to be applied to the controller Service |
 | controller.serviceLabels | object | `{}` | Optional labels to add to the controller Service |
@@ -125,6 +133,7 @@ Fields to note:
 | controller.telemetryConfig.servicePort | int | `8081` | telemetry service port |
 | controller.telemetryConfig.servicePortName | string | `"telemetry"` | telemetry service port name |
 | controller.tolerations | list | `[]` | [Tolerations] for use with node taints |
+| controller.topologySpreadConstraints | list | `[]` | Assign custom [TopologySpreadConstraints] rules to the workflow controller |
 | controller.volumeMounts | list | `[]` | Additional volume mounts to the controller main container |
 | controller.volumes | list | `[]` | Additional volumes to the controller pod |
 | controller.workflowDefaults | object | `{}` | Default values that will apply to all Workflows from this controller, unless overridden on the Workflow-level. Only valid for 2.7+ |
@@ -136,8 +145,8 @@ Fields to note:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| mainContainer.env | object | `{}` | Adds environment variables for the Workflow main container |
-| mainContainer.imagePullPolicy | string | `"Always"` | imagePullPolicy to apply to Workflow main container |
+| mainContainer.env | list | `[]` | Adds environment variables for the Workflow main container |
+| mainContainer.imagePullPolicy | string | `""` | imagePullPolicy to apply to Workflow main container. Defaults to `.Values.images.pullPolicy`. |
 | mainContainer.resources | object | `{}` | Resource limits and requests for the Workflow main container |
 | mainContainer.securityContext | object | `{}` | sets security context for the Workflow main container |
 
@@ -145,7 +154,8 @@ Fields to note:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| executor.env | object | `{}` | Adds environment variables for the executor. |
+| executor.env | list | `[]` | Adds environment variables for the executor. |
+| executor.image.pullPolicy | string | `""` | Image PullPolicy to use for the Workflow Executors. Defaults to `.Values.images.pullPolicy`. |
 | executor.image.registry | string | `"quay.io"` | Registry to use for the Workflow Executors |
 | executor.image.repository | string | `"argoproj/argoexec"` | Repository to use for the Workflow Executors |
 | executor.image.tag | string | `""` | Image tag for the workflow executor. Defaults to `.Values.images.tag`. |
@@ -193,6 +203,7 @@ Fields to note:
 | server.securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"readOnlyRootFilesystem":false,"runAsNonRoot":true}` | Servers container-level security context |
 | server.serviceAccount.annotations | object | `{}` | Annotations applied to created service account |
 | server.serviceAccount.create | bool | `true` | Create a service account for the server |
+| server.serviceAccount.labels | object | `{}` | Labels applied to created service account |
 | server.serviceAccount.name | string | `""` | Service account name |
 | server.serviceAnnotations | object | `{}` | Annotations to be applied to the UI Service |
 | server.serviceLabels | object | `{}` | Optional labels to add to the UI Service |
@@ -202,6 +213,7 @@ Fields to note:
 | server.serviceType | string | `"ClusterIP"` | Service type for server pods |
 | server.sso | object | `{}` | SSO configuration when SSO is specified as a server auth mode. |
 | server.tolerations | list | `[]` | [Tolerations] for use with node taints |
+| server.topologySpreadConstraints | list | `[]` | Assign custom [TopologySpreadConstraints] rules to the argo server |
 | server.volumeMounts | list | `[]` | Additional volume mounts to the server main container. |
 | server.volumes | list | `[]` | Additional volumes to the server pod. |
 
@@ -210,8 +222,10 @@ Fields to note:
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | artifactRepository.archiveLogs | bool | `false` | Archive the main container logs as an artifact |
+| artifactRepository.azure | object | `{}` (See [values.yaml]) | Store artifact in Azure Blob Storage |
 | artifactRepository.gcs | object | `{}` (See [values.yaml]) | Store artifact in a GCS object store |
 | artifactRepository.s3 | object | See [values.yaml] | Store artifact in a S3-compliant object store |
+| customArtifactRepository | object | `{}` | The section of custom artifact repository. Will be added to the config in case useDefaultArtifactRepo is set to false |
 | useDefaultArtifactRepo | bool | `false` | Influences the creation of the ConfigMap for the workflow-controller itself. |
 | useStaticCredentials | bool | `true` | Use static credentials for S3 (eg. when not using AWS IRSA) |
 
@@ -241,4 +255,5 @@ Fields to note:
 [Pod Disruption Budget]: https://kubernetes.io/docs/tasks/run-application/configure-pdb/
 [probe]: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 [Tolerations]: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+[TopologySpreadConstraints]: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
 [values.yaml]: values.yaml
