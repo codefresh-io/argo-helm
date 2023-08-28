@@ -18,13 +18,6 @@ jobs:
         uses: azure/setup-helm@v3
         with:
           version: v3.10.1 # Also update in publish.yaml
-<<<<<<< HEAD
-
-      - name: Setup Kubectl
-        uses: azure/setup-kubectl@v3
-        id: install
-=======
->>>>>>> argo-events-2.0.9
 
       - name: Set up python
         uses: actions/setup-python@v4
@@ -69,18 +62,6 @@ jobs:
         with:
           config: .github/configs/kind-config.yaml
 
-<<<<<<< HEAD
-=======
-      - name: Deploy latest ArgoCD CRDs when testing ArgoCD extensions
-        if: |
-          contains(steps.list-changed.outputs.changed_charts, 'argocd-image-updater') ||
-          contains(steps.list-changed.outputs.changed_charts, 'argocd-apps')
-        run: |
-          helm repo add dandydeveloper https://dandydeveloper.github.io/charts/
-          helm dependency build charts/argo-cd/
-          helm template charts/argo-cd/ --set server.extensions.enabled=true -s templates/crds/* | kubectl apply -f -
-
->>>>>>> argo-events-2.0.9
       - name: Skip HPA tests of ArgoCD
         if: contains(steps.list-changed.outputs.changed_charts, 'argo-cd')
         run: |

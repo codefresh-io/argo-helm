@@ -8,9 +8,6 @@ on:
 permissions:
   contents: read
 
-permissions:
-  contents: read
-
 jobs:
   publish:
     permissions:
@@ -34,23 +31,15 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-<<<<<<< HEAD
-      - name: Package chart
-=======
 
       ## This is required to consider the old Circle-CI Index and to stay compatible with all the old releases.
       - name: Fetch current Chart Index
->>>>>>> argo-events-2.0.9
         run: |
           rm -rf .cr-release-packages
           mkdir .cr-release-packages
           helm package charts/argo-events -u -d .cr-release-packages/
       - name: Run chart-releaser
-<<<<<<< HEAD
-        uses: helm/chart-releaser-action@main
-=======
         uses: helm/chart-releaser-action@v1.4.1
->>>>>>> argo-events-2.0.9
         with:
           config: "./.github/configs/cr.yaml"
           skip_packaging: true
