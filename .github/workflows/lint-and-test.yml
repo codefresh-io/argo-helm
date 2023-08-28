@@ -19,10 +19,6 @@ jobs:
         with:
           version: v3.10.1 # Also update in publish.yaml
 
-      - name: Setup Kubectl
-        uses: azure/setup-kubectl@v3
-        id: install
-
       - name: Set up python
         uses: actions/setup-python@v4
         with:
@@ -30,10 +26,10 @@ jobs:
 
       - name: Setup Chart Linting
         id: lint
-        uses: helm/chart-testing-action@v2.3.0
+        uses: helm/chart-testing-action@v2.3.1
         with:
           # Note: Also update in scripts/lint.sh
-          version: v3.7.0
+          version: v3.7.1
 
       - name: List changed charts
         id: list-changed
@@ -45,6 +41,7 @@ jobs:
             echo "::set-output name=changed::true"
             echo "::set-output name=changed_charts::$charts"
           fi
+
       - name: Run chart-testing (lint)
         run: ct lint --debug --config ./.github/configs/ct-lint.yaml --target-branch ${{ github.base_ref }} --lint-conf ./.github/configs/lintconf.yaml
 
@@ -64,6 +61,15 @@ jobs:
         if: steps.list-changed.outputs.changed == 'true'
         with:
           config: .github/configs/kind-config.yaml
+      
+      - name: Deploy latest ArgoCD CRDs when testing ArgoCD extensions
+        if: |
+          contains(steps.list-changed.outputs.changed_charts, 'argocd-image-updater') ||
+          contains(steps.list-changed.outputs.changed_charts, 'argocd-apps')
+        run: |
+          helm repo add dandydeveloper https://dandydeveloper.github.io/charts/
+          helm dependency build charts/argo-cd/
+          helm template charts/argo-cd/ --set server.extensions.enabled=true -s templates/crds/* | kubectl apply -f -
 
       - name: Skip HPA tests of ArgoCD
         if: contains(steps.list-changed.outputs.changed_charts, 'argo-cd')

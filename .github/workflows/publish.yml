@@ -31,13 +31,15 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-      - name: Package chart
+
+      ## This is required to consider the old Circle-CI Index and to stay compatible with all the old releases.
+      - name: Fetch current Chart Index
         run: |
           rm -rf .cr-release-packages
           mkdir .cr-release-packages
           helm package charts/argo-events -u -d .cr-release-packages/
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@main
+        uses: helm/chart-releaser-action@v1.4.1
         with:
           config: "./.github/configs/cr.yaml"
           skip_packaging: true
