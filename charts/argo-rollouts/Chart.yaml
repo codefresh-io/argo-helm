@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: v1.4.0-cap-sw
+appVersion: v1.5.0
 description: A Helm chart for Argo Rollouts
 name: argo-rollouts
-version: 2.22.1-1-cap-sw
+version: 2.31.6-1-cf-init
 home: https://github.com/argoproj/argo-helm
 icon: https://argoproj.github.io/argo-rollouts/assets/logo.png
 keywords:
@@ -14,5 +14,9 @@ maintainers:
   - name: argoproj
     url: https://argoproj.github.io/
 annotations:
+  artifacthub.io/signKey: |
+    fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+    url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
-    - "[Added]: Flags to toggle provider-specific RBAC rules in Role and ClusterRole"
+    - kind: changed
+      description: Merged upstream tag argo-rollouts-2.31.6
