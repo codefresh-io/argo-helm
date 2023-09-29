@@ -14967,6 +14967,32 @@ entries:
   argo-rollouts:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Merged upstream tag argo-rollouts-2.31.6
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v1.5.0
+    created: "2023-09-29T10:54:19.6632Z"
+    description: A Helm chart for Argo Rollouts
+    digest: d3864ea58502e43494c8a5beb047bdb6a824179f8955102dd1366457d1af3d10
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-rollouts/assets/logo.png
+    keywords:
+    - argoproj
+    - argo-rollouts
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-rollouts
+    sources:
+    - https://github.com/argoproj/argo-rollouts
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-rollouts-2.31.6-1-cf-init/argo-rollouts-2.31.6-1-cf-init.tgz
+    version: 2.31.6-1-cf-init
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Flags to toggle provider-specific RBAC rules in Role and ClusterRole"
     apiVersion: v2
     appVersion: v1.4.0-cap-sw
@@ -19962,4 +19988,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2023-09-26T10:16:47.069288122Z"
+generated: "2023-09-29T10:54:19.665067092Z"
