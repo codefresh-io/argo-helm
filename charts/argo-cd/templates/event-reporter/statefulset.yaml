@@ -7,7 +7,7 @@ metadata:
     {{ $key }}: {{ $value | quote }}
     {{- end }}
   {{- end }}
-  name: {{ template "argo-cd.controller.fullname" . }}
+  name: {{ template "argo-cd.event-reporter.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "argo-cd.labels" (dict "context" . "component" .Values.eventReporter.name "name" .Values.eventReporter.name) | nindent 4 }}
@@ -15,7 +15,7 @@ spec:
   replicas: {{ .Values.eventReporter.replicas }}
   # TODO: Remove for breaking release as history limit cannot be patched
   revisionHistoryLimit: 5
-  serviceName: {{ include "argo-cd.controller.fullname" . }}
+  serviceName: {{ include "argo-cd.event-reporter.fullname" . }}
   selector:
     matchLabels:
       {{- include "argo-cd.selectorLabels" (dict "context" . "name" .Values.eventReporter.name) | nindent 6 }}
@@ -72,101 +72,65 @@ spec:
             {{- end }}
             - name: EVENT_REPORTER_REPLICAS
               value: {{ .Values.eventReporter.replicas | quote }}
-            - name: ARGOCD_RECONCILIATION_TIMEOUT
+
+            - name: ARGOCD_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: token
+                  name: argocd-token
+            - name: CODEFRESH_URL
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cm
-                  key: timeout.reconciliation
+                  name: codefresh-cm
+                  key: base-url
                   optional: true
-            - name: ARGOCD_HARD_RECONCILIATION_TIMEOUT
+            - name: CODEFRESH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: token
+                  name: codefresh-token
+            # todo: clean up
+            - name: EVENT_REPORTER_INSECURE
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cm
-                  key: timeout.hard.reconciliation
+                  name: argocd-cmd-params-cm
+                  key: event-reporter.insecure
                   optional: true
-            - name: ARGOCD_APPLICATION_CONTROLLER_REPO_SERVER
+            - name: EVENT_REPORTER_LOGFORMAT
+              valueFrom:
+                configMapKeyRef:
+                  name: argocd-cmd-params-cm
+                  key: event-reporter.log.format
+                  optional: true
+            - name: EVENT_REPORTER_LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: argocd-cmd-params-cm
+                  key: event-reporter.log.level
+                  optional: true
+            - name: EVENT_REPORTER_REPO_SERVER
               valueFrom:
                 configMapKeyRef:
                   name: argocd-cmd-params-cm
                   key: repo.server
                   optional: true
-            - name: ARGOCD_APPLICATION_CONTROLLER_REPO_SERVER_TIMEOUT_SECONDS
+            - name: EVENT_REPORTER_REPO_SERVER_TIMEOUT_SECONDS
               valueFrom:
                 configMapKeyRef:
                   name: argocd-cmd-params-cm
-                  key: controller.repo.server.timeout.seconds
+                  key: event-reporter.repo.server.timeout.seconds
                   optional: true
-            - name: ARGOCD_APPLICATION_CONTROLLER_STATUS_PROCESSORS
+            - name: EVENT_REPORTER_REPO_SERVER_PLAINTEXT
               valueFrom:
                 configMapKeyRef:
                   name: argocd-cmd-params-cm
-                  key: controller.status.processors
-                  optional: true
-            - name: ARGOCD_APPLICATION_CONTROLLER_OPERATION_PROCESSORS
-              valueFrom:
-                configMapKeyRef:
-                  name: argocd-cmd-params-cm
-                  key: controller.operation.processors
-                  optional: true
-            - name: ARGOCD_APPLICATION_CONTROLLER_LOGFORMAT
-              valueFrom:
-                configMapKeyRef:
-                  name: argocd-cmd-params-cm
-                  key: controller.log.format
-                  optional: true
-            - name: ARGOCD_APPLICATION_CONTROLLER_LOGLEVEL
-              valueFrom:
-                configMapKeyRef:
-                  name: argocd-cmd-params-cm
-                  key: controller.log.level
-                  optional: true
-            - name: ARGOCD_APPLICATION_CONTROLLER_METRICS_CACHE_EXPIRATION
-              valueFrom:
-                configMapKeyRef:
-                  name: argocd-cmd-params-cm
-                  key: controller.metrics.cache.expiration
-                  optional: true
-            - name: ARGOCD_APPLICATION_CONTROLLER_SELF_HEAL_TIMEOUT_SECONDS
-              valueFrom:
-                configMapKeyRef:
-                  name: argocd-cmd-params-cm
-                  key: controller.self.heal.timeout.seconds
-                  optional: true
-            - name: ARGOCD_APPLICATION_CONTROLLER_REPO_SERVER_PLAINTEXT
-              valueFrom:
-                configMapKeyRef:
-                  name: argocd-cmd-params-cm
-                  key: controller.repo.server.plaintext
-                  optional: true
-            - name: ARGOCD_APPLICATION_CONTROLLER_REPO_SERVER_STRICT_TLS
-              valueFrom:
-                configMapKeyRef:
-                  name: argocd-cmd-params-cm
-                  key: controller.repo.server.strict.tls
-                  optional: true
-            - name: ARGOCD_APPLICATION_CONTROLLER_PERSIST_RESOURCE_HEALTH
-              valueFrom:
-                configMapKeyRef:
-                  name: argocd-cmd-params-cm
-                  key: controller.resource.health.persist
-                  optional: true
-            - name: ARGOCD_APP_STATE_CACHE_EXPIRATION
-              valueFrom:
-                configMapKeyRef:
-                  name: argocd-cmd-params-cm
-                  key: controller.app.state.cache.expiration
+                  key: event-reporter.repo.server.plaintext
                   optional: true
             - name: REDIS_SERVER
               valueFrom:
                 configMapKeyRef:
                   name: argocd-cmd-params-cm
                   key: redis.server
-                  optional: true
-            - name: REDIS_COMPRESSION
-              valueFrom:
-                configMapKeyRef:
-                  name: argocd-cmd-params-cm
-                  key: redis.compression
                   optional: true
             - name: REDISDB
               valueFrom:
@@ -186,68 +150,65 @@ spec:
                   name: {{ default (include "argo-cd.redis.fullname" .) .Values.externalRedis.existingSecret }}
                   key: redis-password
                   optional: true
-            - name: ARGOCD_DEFAULT_CACHE_EXPIRATION
-              valueFrom:
-                configMapKeyRef:
-                  name: argocd-cmd-params-cm
-                  key: controller.default.cache.expiration
-                  optional: true
-            - name: ARGOCD_APPLICATION_CONTROLLER_OTLP_ADDRESS
-              valueFrom:
-                configMapKeyRef:
-                  name: argocd-cmd-params-cm
-                  key: otlp.address
-                  optional: true
-            - name: ARGOCD_APPLICATION_NAMESPACES
-              valueFrom:
-                configMapKeyRef:
-                  name: argocd-cmd-params-cm
-                  key: application.namespaces
-                  optional: true
             - name: EVENT_REPORTER_SHARDING_ALGORITHM
               valueFrom:
                 configMapKeyRef:
                   name: argocd-cmd-params-cm
-                  key: controller.sharding.algorithm
+                  key: event-reporter.sharding.algorithm
                   optional: true
-            - name: ARGOCD_APPLICATION_CONTROLLER_KUBECTL_PARALLELISM_LIMIT
+            - name: EVENT_REPORTER_LISTEN_ADDRESS
               valueFrom:
                 configMapKeyRef:
                   name: argocd-cmd-params-cm
-                  key: controller.kubectl.parallelism.limit
+                  key: event-reporter.listen.address
                   optional: true
-        {{- with .Values.eventReporter.envFrom }}
+            - name: EVENT_REPORTER_METRICS_LISTEN_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  name: argocd-cmd-params-cm
+                  key: event-reporter.metrics.listen.address
+                  optional: true
+          {{- with .Values.eventReporter.envFrom }}
           envFrom:
-          {{- toYaml . | nindent 10 }}
-        {{- end }}
+            {{- toYaml . | nindent 10 }}
+          {{- end }}
           ports:
             - name: metrics
               containerPort: {{ .Values.eventReporter.containerPorts.metrics }}
               protocol: TCP
+            - name: health
+              containerPort: {{ .Values.eventReporter.containerPorts.health }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /healthz?full=true
+              port: health
+            initialDelaySeconds: 3
+            periodSeconds: 30
+            timeoutSeconds: 5
           readinessProbe:
             httpGet:
               path: /healthz
-              port: metrics
+              port: health
             initialDelaySeconds: {{ .Values.eventReporter.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.eventReporter.readinessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.eventReporter.readinessProbe.timeoutSeconds }}
             successThreshold: {{ .Values.eventReporter.readinessProbe.successThreshold }}
             failureThreshold: {{ .Values.eventReporter.readinessProbe.failureThreshold }}
           resources:
-          {{- toYaml .Values.eventReporter.resources | nindent 10 }}
-        {{- with .Values.eventReporter.containerSecurityContext }}
+            {{- toYaml .Values.eventReporter.resources | nindent 10 }}
+          {{- with .Values.eventReporter.containerSecurityContext }}
           securityContext:
-          {{- toYaml . | nindent 10 }}
-        {{- end }}
-          workingDir: /home/argocd
+            {{- toYaml . | nindent 10 }}
+          {{- end }}
           volumeMounts:
-        {{- with .Values.eventReporter.volumeMounts }}
-          {{- toYaml . | nindent 8 }}
-        {{- end }}
-            - mountPath: /app/config/controller/tls
-              name: argocd-repo-server-tls
-            - mountPath: /home/argocd
-              name: argocd-home
+            {{- with .Values.eventReporter.volumeMounts }}
+              {{- toYaml . | nindent 8 }}
+            {{- end }}
+            - name: argocd-repo-server-tls
+              mountPath: /app/config/server/tls
+            - mountPath: /tmp
+              name: tmp
       {{- with .Values.eventReporter.extraContainers }}
         {{- tpl (toYaml .) $ | nindent 6 }}
       {{- end }}
@@ -279,11 +240,13 @@ spec:
         {{- end }}
       {{- end }}
       volumes:
-      {{- with .Values.eventReporter.volumes }}
-        {{- toYaml . | nindent 6 }}
-      {{- end }}
-        - name: argocd-home
-          emptyDir: {}
+        {{- with .Values.eventReporter.volumes }}
+          {{- toYaml . | nindent 6 }}
+        {{- end }}
+        - emptyDir: { }
+          name: plugins-home
+        - emptyDir: { }
+          name: tmp
         - name: argocd-repo-server-tls
           secret:
             secretName: argocd-repo-server-tls

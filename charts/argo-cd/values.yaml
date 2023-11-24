@@ -3395,7 +3395,8 @@ eventReporter:
   # Application controller container ports
   containerPorts:
     # -- Metrics container port
-    metrics: 8082
+    metrics: 8087
+    health: 8088
 
   # -- Host Network for event reporter pods
   hostNetwork: false
