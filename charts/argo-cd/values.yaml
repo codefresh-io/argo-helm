@@ -106,7 +106,7 @@ global:
   # -- Default node selector for all components
   nodeSelector: {}
 
-  # -- Default tolerations for all `component`s
+  # -- Default tolerations for all components
   tolerations: []
 
   # Default affinity preset for all components
