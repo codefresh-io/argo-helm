@@ -3280,6 +3280,7 @@ notifications:
 
 eventReporter:
   name: event-reporter
+  ## Amount of replicas for event reporting sharding
   replicas: 1
   ## Application controller Pod Disruption Budget
   ## Ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb/
@@ -3298,16 +3299,17 @@ eventReporter:
     maxUnavailable: ""
 
   ## Application controller image
+  ## todo: remove default values
   image:
     # -- Repository to use for the event reporter
     # @default -- `""` (defaults to global.image.repository)
-    repository: ""
+    repository: "docker.io/xeonalex/personal-argocd-dev"
     # -- Tag to use for the event reporter
     # @default -- `""` (defaults to global.image.tag)
-    tag: ""
+    tag: "reporting-v2-test-v5"
     # -- Image pull policy for the event reporter
     # @default -- `""` (defaults to global.image.imagePullPolicy)
-    imagePullPolicy: ""
+    imagePullPolicy: "Always"
 
   # -- Secrets with credentials to pull images from a private registry
   # @default -- `[]` (defaults to global.imagePullSecrets)
