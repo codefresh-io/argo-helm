@@ -3279,6 +3279,7 @@ notifications:
     #   - on-sync-status-unknown
 
 eventReporter:
+  enabled: false
   name: event-reporter
   ## Amount of replicas for event reporting sharding
   replicas: 1
