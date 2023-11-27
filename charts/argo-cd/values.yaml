@@ -3288,7 +3288,7 @@ eventReporter:
   name: event-reporter
   ## Amount of replicas for event reporting sharding
   replicas: 1
-  ## Application controller Pod Disruption Budget
+  ## Event reporter Pod Disruption Budget
   ## Ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb/
   pdb:
     # -- Deploy a [PodDisruptionBudget] for the event reporter
@@ -3304,24 +3304,23 @@ eventReporter:
     ## Has higher precedence over `controller.pdb.minAvailable`
     maxUnavailable: ""
 
-  ## Application controller image
-  ## todo: remove default values
+  ## Event reporter image
   image:
     # -- Repository to use for the event reporter
     # @default -- `""` (defaults to global.image.repository)
-    repository: "docker.io/xeonalex/personal-argocd-dev"
+    repository: ""
     # -- Tag to use for the event reporter
     # @default -- `""` (defaults to global.image.tag)
-    tag: "reporting-v2-test-v20"
+    tag: ""
     # -- Image pull policy for the event reporter
     # @default -- `""` (defaults to global.image.imagePullPolicy)
-    imagePullPolicy: "Always"
+    imagePullPolicy: ""
 
   # -- Secrets with credentials to pull images from a private registry
   # @default -- `[]` (defaults to global.imagePullSecrets)
   imagePullSecrets: []
 
-  # -- DEPRECATED - Application controller commandline flags
+  # -- DEPRECATED - Event reporter commandline flags
   args: {}
   # DEPRECATED - Use configs.params to override
   #  # -- define the event reporter `--status-processors`
@@ -3400,7 +3399,7 @@ eventReporter:
   #    cpu: 250m
   #    memory: 256Mi
 
-  # Application controller container ports
+  # Event reporter container ports
   containerPorts:
     # -- Metrics container port
     metrics: 8087
@@ -3414,7 +3413,7 @@ eventReporter:
   # -- Alternative DNS policy for event reporter pods
   dnsPolicy: "ClusterFirst"
 
-  # -- Application controller container-level security context
+  # -- Event reporter container-level security context
   # @default -- See [values.yaml]
   containerSecurityContext:
     runAsNonRoot: true
@@ -3480,7 +3479,7 @@ eventReporter:
     # -- Automount API credentials for the Service Account
     automountServiceAccountToken: true
 
-  ## Application controller metrics configuration
+  ## Event reporter metrics configuration
   metrics:
     # -- Deploy metrics service
     enabled: false
