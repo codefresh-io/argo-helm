@@ -461,6 +461,7 @@ NAME: my-release
 | eventReporter.terminationGracePeriodSeconds | int | `30` | terminationGracePeriodSeconds for container lifecycle hook |
 | eventReporter.tolerations | list | `[]` (defaults to global.tolerations) | [Tolerations] for use with node taints |
 | eventReporter.topologySpreadConstraints | list | `[]` (defaults to global.topologySpreadConstraints) | Assign custom [TopologySpreadConstraints] rules to the event reporter |
+| eventReporter.version | string | `"v1"` |  |
 | eventReporter.volumeMounts | list | `[]` | Additional volumeMounts to the event reporter main container |
 | eventReporter.volumes | list | `[]` | Additional volumes to the event reporter pod |
 | extraObjects | list | `[]` | Array of extra K8s manifests to deploy |
