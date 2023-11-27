@@ -3279,7 +3279,12 @@ notifications:
     #   - on-sync-status-unknown
 
 eventReporter:
+  # Enabled we need to skip argo-cd chart tests for this component
   enabled: false
+  # Version we need to dynamically switch between old and new version
+  # one will be just hanging and the second one working
+  # possible values: v1, v2
+  version: v1
   name: event-reporter
   ## Amount of replicas for event reporting sharding
   replicas: 1
@@ -3307,7 +3312,7 @@ eventReporter:
     repository: "docker.io/xeonalex/personal-argocd-dev"
     # -- Tag to use for the event reporter
     # @default -- `""` (defaults to global.image.tag)
-    tag: "reporting-v2-test-v5"
+    tag: "reporting-v2-test-v20"
     # -- Image pull policy for the event reporter
     # @default -- `""` (defaults to global.image.imagePullPolicy)
     imagePullPolicy: "Always"
