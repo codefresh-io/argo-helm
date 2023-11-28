@@ -3320,22 +3320,6 @@ eventReporter:
   # @default -- `[]` (defaults to global.imagePullSecrets)
   imagePullSecrets: []
 
-  # -- DEPRECATED - Event reporter commandline flags
-  args: {}
-  # DEPRECATED - Use configs.params to override
-  #  # -- define the event reporter `--status-processors`
-  #  statusProcessors: "20"
-  #  # -- define the event reporter `--operation-processors`
-  #  operationProcessors: "10"
-  #  # -- define the event reporter `--app-hard-resync`
-  #  appHardResyncPeriod: "0"
-  #  # -- define the event reporter `--app-resync`
-  #  appResyncPeriod: "180"
-  #  # -- define the event reporter `--self-heal-timeout-seconds`
-  #  selfHealTimeout: "5"
-  #  # -- define the event reporter `--repo-server-timeout-seconds`
-  #  repoServerTimeoutSeconds: "60"
-
   # -- Additional command line arguments to pass to event reporter
   extraArgs: []
 

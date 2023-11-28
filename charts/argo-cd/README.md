@@ -391,7 +391,6 @@ NAME: my-release
 | createAggregateRoles | bool | `false` | Create aggregated roles that extend existing cluster roles to interact with argo-cd resources |
 | createClusterRoles | bool | `true` | Create cluster roles for cluster-wide installation. |
 | eventReporter.affinity | object | `{}` (defaults to global.affinity preset) | Assign custom [affinity] rules to the deployment |
-| eventReporter.args | object | `{}` | DEPRECATED - Event reporter commandline flags |
 | eventReporter.clusterRoleRules.enabled | bool | `false` | Enable custom rules for the event reporter's ClusterRole resource |
 | eventReporter.clusterRoleRules.rules | list | `[]` | List of custom rules for the event reporter's ClusterRole resource |
 | eventReporter.containerPorts.health | int | `8088` |  |
