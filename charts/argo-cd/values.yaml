@@ -3287,7 +3287,7 @@ eventReporter:
   version: v1
   name: event-reporter
   ## Amount of replicas for event reporting sharding
-  replicas: 1
+  replicas: 3
   ## Event reporter Pod Disruption Budget
   ## Ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb/
   pdb:

@@ -391,12 +391,12 @@ NAME: my-release
 | createAggregateRoles | bool | `false` | Create aggregated roles that extend existing cluster roles to interact with argo-cd resources |
 | createClusterRoles | bool | `true` | Create cluster roles for cluster-wide installation. |
 | eventReporter.affinity | object | `{}` (defaults to global.affinity preset) | Assign custom [affinity] rules to the deployment |
-| eventReporter.args | object | `{}` | DEPRECATED - Application controller commandline flags |
+| eventReporter.args | object | `{}` | DEPRECATED - Event reporter commandline flags |
 | eventReporter.clusterRoleRules.enabled | bool | `false` | Enable custom rules for the event reporter's ClusterRole resource |
 | eventReporter.clusterRoleRules.rules | list | `[]` | List of custom rules for the event reporter's ClusterRole resource |
 | eventReporter.containerPorts.health | int | `8088` |  |
 | eventReporter.containerPorts.metrics | int | `8087` | Metrics container port |
-| eventReporter.containerSecurityContext | object | See [values.yaml] | Application controller container-level security context |
+| eventReporter.containerSecurityContext | object | See [values.yaml] | Event reporter container-level security context |
 | eventReporter.dnsConfig | object | `{}` | [DNS configuration] |
 | eventReporter.dnsPolicy | string | `"ClusterFirst"` | Alternative DNS policy for event reporter pods |
 | eventReporter.enabled | bool | `false` |  |
@@ -450,7 +450,7 @@ NAME: my-release
 | eventReporter.readinessProbe.periodSeconds | int | `10` | How often (in seconds) to perform the [probe] |
 | eventReporter.readinessProbe.successThreshold | int | `1` | Minimum consecutive successes for the [probe] to be considered successful after having failed |
 | eventReporter.readinessProbe.timeoutSeconds | int | `1` | Number of seconds after which the [probe] times out |
-| eventReporter.replicas | int | `1` |  |
+| eventReporter.replicas | int | `3` |  |
 | eventReporter.resources | object | `{}` | Resource limits and requests for the event reporter pods |
 | eventReporter.serviceAccount.annotations | object | `{}` | Annotations applied to created service account |
 | eventReporter.serviceAccount.automountServiceAccountToken | bool | `true` | Automount API credentials for the Service Account |
