@@ -5,7 +5,7 @@ metadata:
   name: {{ include "argo-cd.event-reporter.fullname" . }}-metrics
   namespace: {{ .Release.Namespace | quote }}
   labels:
-    {{- include "argo-cd.labels" (dict "context" . "component" .Values.eventReporter.name "name" "metrics") | nindent 4 }}
+    {{- include "argo-cd.labels" (dict "context" . "component" .Values.eventReporter.name "name" (printf "%s-metrics" .Values.eventReporter.name)) | nindent 4 }}
     {{- with .Values.eventReporter.metrics.service.labels }}
       {{- toYaml . | nindent 4 }}
     {{- end }}
