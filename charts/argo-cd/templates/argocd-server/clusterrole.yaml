@@ -21,6 +21,9 @@ rules:
       - events
     verbs:
       - list
+      {{- if (index .Values.configs.params "application.namespaces") }}
+      - create
+      {{- end }}
   - apiGroups:
       - ""
     resources:
@@ -40,6 +43,7 @@ rules:
       - argoproj.io
     resources:
       - applications
+      - applicationsets
     verbs:
       - get
       - list
@@ -48,6 +52,7 @@ rules:
   - apiGroups:
       - batch
     resources:
+      {{/* supports triggering jobs from UI */}}
       - jobs
     verbs:
       - create
@@ -56,5 +61,6 @@ rules:
     resources:
       - workflows
     verbs:
+      {{/* supports triggering workflows from UI */}}
       - create
 {{- end }}

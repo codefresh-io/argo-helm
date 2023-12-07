@@ -42,7 +42,7 @@ repoServer:
     minReplicas: 2
 
 applicationSet:
-  replicaCount: 2
+  replicas: 2
 ```
 
 ### HA mode without autoscaling
@@ -61,7 +61,7 @@ repoServer:
   replicas: 2
 
 applicationSet:
-  replicaCount: 2
+  replicas: 2
 ```
 
 ### Synchronizing Changes from Original Repository
@@ -106,7 +106,7 @@ For full list of changes please check ArtifactHub [changelog].
 Highlighted versions provide information about additional steps that should be performed by user when upgrading to newer version.
 
 ### 5.35.0
-This version supports Kubernetes version `>=1.23.0-0`. The current supported version of Kubernetes is v1.24 or later and we align with Amazon EKS calendar, because many of AWS users and conservative approach.
+This version supports Kubernetes version `>=1.23.0-0`. The current supported version of Kubernetes is v1.24 or later and we align with the Amazon EKS calendar, because many AWS users follow a conservative approach.
 
 Please see more information about EoL: [Amazon EKS EoL][EKS EoL].
 
@@ -126,7 +126,7 @@ This versions adds `global.affinity` options that are used as a presets. Overrid
 
 ### 5.19.0
 
-This version consolidates config for custom repository TLS certificates and SSH known hosts. If you provide this values please move them into new `configs.ssh` and `configs.tls` sections.
+This version consolidates config for custom repository TLS certificates and SSH known hosts. If you provided these values (`configs.knownHosts.*`, `configs.knownHostsAnnotations`, `configs.tlsCerts`, `configs.tlsCertsAnnotations`) please move them into new `configs.ssh` and `configs.tls` sections.
 You can also use new option `configs.ssh.extraHosts` to configure your SSH keys without maintaing / overwritting keys for public Git repositories.
 
 ### 5.13.0
@@ -383,8 +383,6 @@ NAME: my-release
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| apiVersionOverrides.autoscaling | string | `""` | String to override apiVersion of autoscaling rendered by this helm chart |
-| apiVersionOverrides.certmanager | string | `""` | String to override apiVersion of cert-manager resources rendered by this helm chart |
 | apiVersionOverrides.cloudgoogle | string | `""` | String to override apiVersion of GKE resources rendered by this helm chart |
 | crds.additionalLabels | object | `{}` | Addtional labels to be added to all CRDs |
 | crds.annotations | object | `{}` | Annotations to be added to all CRDs |
@@ -451,6 +449,7 @@ NAME: my-release
 | configs.credentialTemplatesAnnotations | object | `{}` | Annotations to be added to `configs.credentialTemplates` Secret |
 | configs.gpg.annotations | object | `{}` | Annotations to be added to argocd-gpg-keys-cm configmap |
 | configs.gpg.keys | object | `{}` (See [values.yaml]) | [GnuPG] public keys to add to the keyring |
+| configs.params."application.namespaces" | string | `""` | Enables [Applications in any namespace] |
 | configs.params."applicationsetcontroller.enable.progressive.syncs" | bool | `false` | Enables use of the Progressive Syncs capability |
 | configs.params."applicationsetcontroller.policy" | string | `"sync"` | Modify how application is synced between the generator and the cluster. One of: `sync`, `create-only`, `create-update`, `create-delete` |
 | configs.params."controller.operation.processors" | int | `10` | Number of application operation processors |
@@ -563,6 +562,7 @@ NAME: my-release
 | controller.serviceAccount.labels | object | `{}` | Labels applied to created service account |
 | controller.serviceAccount.name | string | `"argocd-application-controller"` | Service account name |
 | controller.statefulsetAnnotations | object | `{}` | Annotations for the application controller StatefulSet |
+| controller.terminationGracePeriodSeconds | int | `30` | terminationGracePeriodSeconds for container lifecycle hook |
 | controller.tolerations | list | `[]` (defaults to global.tolerations) | [Tolerations] for use with node taints |
 | controller.topologySpreadConstraints | list | `[]` (defaults to global.topologySpreadConstraints) | Assign custom [TopologySpreadConstraints] rules to the application controller |
 | controller.volumeMounts | list | `[]` | Additional volumeMounts to the application controller main container |
@@ -573,7 +573,7 @@ NAME: my-release
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | repoServer.affinity | object | `{}` (defaults to global.affinity preset) | Assign custom [affinity] rules to the deployment |
-| repoServer.autoscaling.behavior | object | `{}` | Configures the scaling behavior of the target in both Up and Down directions. This is only available on HPA apiVersion `autoscaling/v2beta2` and newer |
+| repoServer.autoscaling.behavior | object | `{}` | Configures the scaling behavior of the target in both Up and Down directions. |
 | repoServer.autoscaling.enabled | bool | `false` | Enable Horizontal Pod Autoscaler ([HPA]) for the repo server |
 | repoServer.autoscaling.maxReplicas | int | `5` | Maximum number of replicas for the repo server [HPA] |
 | repoServer.autoscaling.metrics | list | `[]` | Configures custom HPA metrics for the Argo CD repo server Ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/ |
@@ -655,8 +655,10 @@ NAME: my-release
 | repoServer.serviceAccount.create | bool | `true` | Create repo server service account |
 | repoServer.serviceAccount.labels | object | `{}` | Labels applied to created service account |
 | repoServer.serviceAccount.name | string | `""` | Repo server service account name |
+| repoServer.terminationGracePeriodSeconds | int | `30` | terminationGracePeriodSeconds for container lifecycle hook |
 | repoServer.tolerations | list | `[]` (defaults to global.tolerations) | [Tolerations] for use with node taints |
 | repoServer.topologySpreadConstraints | list | `[]` (defaults to global.topologySpreadConstraints) | Assign custom [TopologySpreadConstraints] rules to the repo server |
+| repoServer.useEphemeralHelmWorkingDir | bool | `true` | Toggle the usage of a ephemeral Helm working directory |
 | repoServer.volumeMounts | list | `[]` | Additional volumeMounts to the repo server main container |
 | repoServer.volumes | list | `[]` | Additional volumes to the repo server pod |
 
@@ -671,7 +673,7 @@ NAME: my-release
 | server.GKEmanagedCertificate.domains | list | `["argocd.example.com"]` | Domains for the Google Managed Certificate |
 | server.GKEmanagedCertificate.enabled | bool | `false` | Enable ManagedCertificate custom resource for Google Kubernetes Engine. |
 | server.affinity | object | `{}` (defaults to global.affinity preset) | Assign custom [affinity] rules to the deployment |
-| server.autoscaling.behavior | object | `{}` | Configures the scaling behavior of the target in both Up and Down directions. This is only available on HPA apiVersion `autoscaling/v2beta2` and newer |
+| server.autoscaling.behavior | object | `{}` | Configures the scaling behavior of the target in both Up and Down directions. |
 | server.autoscaling.enabled | bool | `false` | Enable Horizontal Pod Autoscaler ([HPA]) for the Argo CD server |
 | server.autoscaling.maxReplicas | int | `5` | Maximum number of replicas for the Argo CD server [HPA] |
 | server.autoscaling.metrics | list | `[]` | Configures custom HPA metrics for the Argo CD server Ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/ |
@@ -808,6 +810,7 @@ NAME: my-release
 | server.serviceAccount.create | bool | `true` | Create server service account |
 | server.serviceAccount.labels | object | `{}` | Labels applied to created service account |
 | server.serviceAccount.name | string | `"argocd-server"` | Server service account name |
+| server.terminationGracePeriodSeconds | int | `30` | terminationGracePeriodSeconds for container lifecycle hook |
 | server.tolerations | list | `[]` (defaults to global.tolerations) | [Tolerations] for use with node taints |
 | server.topologySpreadConstraints | list | `[]` (defaults to global.topologySpreadConstraints) | Assign custom [TopologySpreadConstraints] rules to the Argo CD server |
 | server.volumeMounts | list | `[]` | Additional volumeMounts to the server main container |
@@ -916,6 +919,7 @@ server:
 | dex.servicePortHttp | int | `5556` | Service port for HTTP access |
 | dex.servicePortHttpName | string | `"http"` | Service port name for HTTP access |
 | dex.servicePortMetrics | int | `5558` | Service port for metrics access |
+| dex.terminationGracePeriodSeconds | int | `30` | terminationGracePeriodSeconds for container lifecycle hook |
 | dex.tolerations | list | `[]` (defaults to global.tolerations) | [Tolerations] for use with node taints |
 | dex.topologySpreadConstraints | list | `[]` (defaults to global.topologySpreadConstraints) | Assign custom [TopologySpreadConstraints] rules to dex |
 | dex.volumeMounts | list | `[]` | Additional volumeMounts to the dex main container |
@@ -942,13 +946,13 @@ server:
 | redis.exporter.env | list | `[]` | Environment variables to pass to the Redis exporter |
 | redis.exporter.image.imagePullPolicy | string | `""` (defaults to global.image.imagePullPolicy) | Image pull policy for the redis-exporter |
 | redis.exporter.image.repository | string | `"public.ecr.aws/bitnami/redis-exporter"` | Repository to use for the redis-exporter |
-| redis.exporter.image.tag | string | `"1.45.0"` | Tag to use for the redis-exporter |
+| redis.exporter.image.tag | string | `"1.53.0"` | Tag to use for the redis-exporter |
 | redis.exporter.resources | object | `{}` | Resource limits and requests for redis-exporter sidecar |
 | redis.extraArgs | list | `[]` | Additional command line arguments to pass to redis-server |
 | redis.extraContainers | list | `[]` | Additional containers to be added to the redis pod |
 | redis.image.imagePullPolicy | string | `""` (defaults to global.image.imagePullPolicy) | Redis image pull policy |
 | redis.image.repository | string | `"public.ecr.aws/docker/library/redis"` | Redis repository |
-| redis.image.tag | string | `"7.0.11-alpine"` | Redis tag |
+| redis.image.tag | string | `"7.0.13-alpine"` | Redis tag |
 | redis.imagePullSecrets | list | `[]` (defaults to global.imagePullSecrets) | Secrets with credentials to pull images from a private registry |
 | redis.initContainers | list | `[]` | Init containers to add to the redis pod |
 | redis.metrics.enabled | bool | `false` | Deploy metrics service |
@@ -987,6 +991,7 @@ server:
 | redis.serviceAccount.create | bool | `false` | Create a service account for the redis pod |
 | redis.serviceAccount.name | string | `""` | Service account name for redis pod |
 | redis.servicePort | int | `6379` | Redis service port |
+| redis.terminationGracePeriodSeconds | int | `30` | terminationGracePeriodSeconds for container lifecycle hook |
 | redis.tolerations | list | `[]` (defaults to global.tolerations) | [Tolerations] for use with node taints |
 | redis.topologySpreadConstraints | list | `[]` (defaults to global.topologySpreadConstraints) | Assign custom [TopologySpreadConstraints] rules to redis |
 | redis.volumeMounts | list | `[]` | Additional volumeMounts to the redis container |
@@ -1000,17 +1005,29 @@ The main options are listed here:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| redis-ha.additionalAffinities | object | `{}` | Additional affinities to add to the Redis server pods. |
+| redis-ha.affinity | string | `""` | Assign custom [affinity] rules to the Redis pods. |
+| redis-ha.containerSecurityContext | object | See [values.yaml] | Redis HA statefulset container-level security context |
 | redis-ha.enabled | bool | `false` | Enables the Redis HA subchart and disables the custom Redis single node deployment |
 | redis-ha.exporter.enabled | bool | `false` | Enable Prometheus redis-exporter sidecar |
 | redis-ha.exporter.image | string | `"public.ecr.aws/bitnami/redis-exporter"` | Repository to use for the redis-exporter |
-| redis-ha.exporter.tag | string | `"1.45.0"` | Tag to use for the redis-exporter |
+| redis-ha.exporter.tag | string | `"1.53.0"` | Tag to use for the redis-exporter |
+| redis-ha.haproxy.additionalAffinities | object | `{}` | Additional affinities to add to the haproxy pods. |
+| redis-ha.haproxy.affinity | string | `""` | Assign custom [affinity] rules to the haproxy pods. |
+| redis-ha.haproxy.containerSecurityContext | object | See [values.yaml] | HAProxy container-level security context |
 | redis-ha.haproxy.enabled | bool | `true` | Enabled HAProxy LoadBalancing/Proxy |
+| redis-ha.haproxy.hardAntiAffinity | bool | `true` | Whether the haproxy pods should be forced to run on separate nodes. |
 | redis-ha.haproxy.metrics.enabled | bool | `true` | HAProxy enable prometheus metric scraping |
-| redis-ha.image.tag | string | `"7.0.11-alpine"` | Redis tag |
+| redis-ha.haproxy.tolerations | list | `[]` | [Tolerations] for use with node taints for haproxy pods. |
+| redis-ha.hardAntiAffinity | bool | `true` | Whether the Redis server pods should be forced to run on separate nodes. |
+| redis-ha.image.repository | string | `"redis"` | Redis repository |
+| redis-ha.image.tag | string | `"7.0.13-alpine"` | Redis tag |
 | redis-ha.persistentVolume.enabled | bool | `false` | Configures persistence on Redis nodes |
 | redis-ha.redis.config | object | See [values.yaml] | Any valid redis config options in this section will be applied to each server (see `redis-ha` chart) |
 | redis-ha.redis.config.save | string | `'""'` | Will save the DB if both the given number of seconds and the given number of write operations against the DB occurred. `""`  is disabled |
 | redis-ha.redis.masterGroupName | string | `"argocd"` | Redis convention for naming the cluster group: must match `^[\\w-\\.]+$` and can be templated |
+| redis-ha.tolerations | list | `[]` | [Tolerations] for use with node taints for Redis pods. |
+| redis-ha.topologySpreadConstraints | object | `{"enabled":false,"maxSkew":"","topologyKey":"","whenUnsatisfiable":""}` | Assign custom [TopologySpreadConstraints] rules to the Redis pods. |
 | redis-ha.topologySpreadConstraints.enabled | bool | `false` | Enable Redis HA topology spread constraints |
 | redis-ha.topologySpreadConstraints.maxSkew | string | `""` (defaults to `1`) | Max skew of pods tolerated |
 | redis-ha.topologySpreadConstraints.topologyKey | string | `""` (defaults to `topology.kubernetes.io/zone`) | Topology key for spread |
@@ -1125,6 +1142,7 @@ If you want to use an existing Redis (eg. a managed service from a cloud provide
 | applicationSet.serviceAccount.create | bool | `true` | Create ApplicationSet controller service account |
 | applicationSet.serviceAccount.labels | object | `{}` | Labels applied to created service account |
 | applicationSet.serviceAccount.name | string | `"argocd-applicationset-controller"` | ApplicationSet controller service account name |
+| applicationSet.terminationGracePeriodSeconds | int | `30` | terminationGracePeriodSeconds for container lifecycle hook |
 | applicationSet.tolerations | list | `[]` (defaults to global.tolerations) | [Tolerations] for use with node taints |
 | applicationSet.topologySpreadConstraints | list | `[]` (defaults to global.topologySpreadConstraints) | Assign custom [TopologySpreadConstraints] rules to the ApplicationSet controller |
 | applicationSet.webhook.ingress.annotations | object | `{}` | Additional ingress annotations |
@@ -1143,6 +1161,7 @@ If you want to use an existing Redis (eg. a managed service from a cloud provide
 |-----|------|---------|-------------|
 | notifications.affinity | object | `{}` (defaults to global.affinity preset) | Assign custom [affinity] rules |
 | notifications.argocdUrl | string | `nil` | Argo CD dashboard url; used in place of {{.context.argocdUrl}} in templates |
+| notifications.clusterRoleRules.rules | list | `[]` | List of custom rules for the notifications controller's ClusterRole resource |
 | notifications.cm.create | bool | `true` | Whether helm chart creates notifications controller config map |
 | notifications.containerPorts.metrics | int | `9001` | Metrics container port |
 | notifications.containerSecurityContext | object | See [values.yaml] | Notification controller container-level security Context |
@@ -1203,6 +1222,7 @@ If you want to use an existing Redis (eg. a managed service from a cloud provide
 | notifications.serviceAccount.name | string | `"argocd-notifications-controller"` | Notification controller service account name |
 | notifications.subscriptions | list | `[]` | Contains centrally managed global application subscriptions |
 | notifications.templates | object | `{}` | The notification template is used to generate the notification content |
+| notifications.terminationGracePeriodSeconds | int | `30` | terminationGracePeriodSeconds for container lifecycle hook |
 | notifications.tolerations | list | `[]` (defaults to global.tolerations) | [Tolerations] for use with node taints |
 | notifications.topologySpreadConstraints | list | `[]` (defaults to global.topologySpreadConstraints) | Assign custom [TopologySpreadConstraints] rules to the application controller |
 | notifications.triggers | object | `{}` | The trigger defines the condition when the notification should be sent |
@@ -1234,3 +1254,4 @@ Autogenerated from chart metadata using [helm-docs](https://github.com/norwoodj/
 [tini]: https://github.com/argoproj/argo-cd/pull/12707
 [EKS EoL]: https://endoflife.date/amazon-eks
 [Kubernetes Compatibility Matrix]: https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/#supported-versions
+[Applications in any namespace]: https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/#applications-in-any-namespace

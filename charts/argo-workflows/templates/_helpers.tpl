@@ -79,6 +79,9 @@ helm.sh/chart: {{ include "argo-workflows.chart" .context }}
 {{ include "argo-workflows.selectorLabels" (dict "context" .context "component" .component "name" .name) }}
 app.kubernetes.io/managed-by: {{ .context.Release.Service }}
 app.kubernetes.io/part-of: argo-workflows
+{{- with .context.Values.commonLabels }}
+{{ toYaml .}}
+{{- end }}
 {{- end }}
 
 {{/*
@@ -93,6 +96,13 @@ app.kubernetes.io/instance: {{ .context.Release.Name }}
 app.kubernetes.io/component: {{ .component }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create the name of the controller configMap
+*/}}
+{{- define "argo-workflows.controller.config-map.name" -}}
+{{- .Values.controller.configMap.name | default (printf "%s-%s" (include "argo-workflows.controller.fullname" .) "configmap") | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
 
 {{/*
 Create the name of the server service account to use
