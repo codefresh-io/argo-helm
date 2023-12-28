@@ -16424,6 +16424,27 @@ entries:
         - kind: fixed
           description: Align changelog structure to show changelogs on Artifact Hub
     apiVersion: v2
+    appVersion: v3.4.4-cap-CR-20826
+    created: "2023-12-28T14:12:04.974888401Z"
+    description: A Helm chart for Argo Workflows
+    digest: c5b8785a90186792128af14fe78847e484a1ec35cae7155c16c68f16880da378
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-workflows-0.22.10-2-CR-20826/argo-workflows-0.22.10-2-CR-20826.tgz
+    version: 0.22.10-2-CR-20826
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Align changelog structure to show changelogs on Artifact Hub
+    apiVersion: v2
     appVersion: v3.4.4-cap-CR-17426
     created: "2023-10-14T10:33:21.440622692Z"
     description: A Helm chart for Argo Workflows
@@ -20349,4 +20370,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2023-12-28T10:47:01.258235334Z"
+generated: "2023-12-28T14:12:04.976025931Z"
