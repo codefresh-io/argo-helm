@@ -1589,6 +1589,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Upgrade Argo CD to v2.9-2024.01.17-0d221227f
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v2.9-2024.01.17-0d221227f
+    created: "2024-01-17T13:37:42.446467013Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.23.0
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 008b968dd2c0e30ec1f3f16310bd687c6b062d479d947400374045ad5110eed7
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-5.51.6-5-cap-2.9-2024.1.17-0d221227f/argo-cd-5.51.6-5-cap-2.9-2024.1.17-0d221227f.tgz
+    version: 5.51.6-5-cap-2.9-2024.1.17-0d221227f
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Add argo server root path secret to event reporter
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -20405,4 +20440,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-01-04T16:12:38.05156147Z"
+generated: "2024-01-17T13:37:42.448442878Z"
