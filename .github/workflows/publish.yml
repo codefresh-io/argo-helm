@@ -37,6 +37,12 @@ jobs:
       - name: Fetch current Chart Index
         run: |
           git checkout origin/gh-pages index.yaml
+      
+      - name: Package chart
+        run: |
+          rm -rf .cr-release-packages
+          mkdir .cr-release-packages
+          helm package charts/argo-events -u -d .cr-release-packages/
 
       # The GitHub repository secret `PGP_PRIVATE_KEY` contains the private key
       # in ASCII-armored format. To export a (new) key, run this command:
@@ -55,7 +61,9 @@ jobs:
           PGP_PASSPHRASE: "${{ secrets.PGP_PASSPHRASE }}"
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@a917fd15b20e8b64b94d9158ad54cd6345335584 # v1.6.0
+        # todo: change later to v1.6.0 (also in agro-rollouts chart)
+        # issue: https://github.com/helm/chart-releaser-action/issues/171
+        uses: helm/chart-releaser-action@be16258da8010256c6e82849661221415f031968 # v1.5.0
         with:
           config: "./.github/configs/cr.yaml"
           skip_packaging: true
