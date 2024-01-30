@@ -14256,6 +14256,33 @@ entries:
   argo-events:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Bump argo-events to v1.9.0
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v1.9.0-cap-CR-22221
+    created: "2024-01-30T13:48:15.661756918Z"
+    description: A Helm chart for Argo Events, the event-driven workflow automation
+      framework
+    digest: 4ffc7df684335e92e36abb299ee5cd8097808afe0e2eccbdbd68b70a2995aaf2
+    home: https://github.com/argoproj/argo-helm
+    icon: https://avatars.githubusercontent.com/u/30269780?s=200&v=4
+    keywords:
+    - argoproj
+    - argo-events
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-events
+    sources:
+    - https://github.com/argoproj/argo-events
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-events-2.4.2-1-cap-CR-22221/argo-events-2.4.2-1-cap-CR-22221.tgz
+    version: 2.4.2-1-cap-CR-22221
+  - annotations:
+      artifacthub.io/changes: |
         - "[Changed]: Upgrade Argo events controller to v1.7.4"
     apiVersion: v2
     appVersion: v1.7.4
@@ -20571,4 +20598,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-01-24T15:28:33.574673717Z"
+generated: "2024-01-30T13:48:15.664137933Z"
