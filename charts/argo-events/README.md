@@ -25,7 +25,7 @@ Some users would prefer to install the CRDs _outside_ of the chart. You can disa
 
 You can install the CRDs manually from `templates/crds` folder.
 
-### 3.0.*
+### 2.4.*
 
 At github events source githubUploadURL is required when githubBaseURL is set
 
