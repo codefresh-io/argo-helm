@@ -74,6 +74,26 @@ done
 | configs.jetstream.versions[0].natsImage | string | `"nats:2.8.1"` |  |
 | configs.jetstream.versions[0].startCommand | string | `"/nats-server"` |  |
 | configs.jetstream.versions[0].version | string | `"latest"` |  |
+| configs.jetstream.versions[1].configReloaderImage | string | `"natsio/nats-server-config-reloader:0.7.0"` |  |
+| configs.jetstream.versions[1].metricsExporterImage | string | `"natsio/prometheus-nats-exporter:0.9.1"` |  |
+| configs.jetstream.versions[1].natsImage | string | `"nats:2.8.1"` |  |
+| configs.jetstream.versions[1].startCommand | string | `"/nats-server"` |  |
+| configs.jetstream.versions[1].version | string | `"2.8.1"` |  |
+| configs.jetstream.versions[2].configReloaderImage | string | `"natsio/nats-server-config-reloader:0.7.0"` |  |
+| configs.jetstream.versions[2].metricsExporterImage | string | `"natsio/prometheus-nats-exporter:0.9.1"` |  |
+| configs.jetstream.versions[2].natsImage | string | `"nats:2.8.1-alpine"` |  |
+| configs.jetstream.versions[2].startCommand | string | `"nats-server"` |  |
+| configs.jetstream.versions[2].version | string | `"2.8.1-alpine"` |  |
+| configs.jetstream.versions[3].configReloaderImage | string | `"natsio/nats-server-config-reloader:0.7.0"` |  |
+| configs.jetstream.versions[3].metricsExporterImage | string | `"natsio/prometheus-nats-exporter:0.9.1"` |  |
+| configs.jetstream.versions[3].natsImage | string | `"nats:2.8.2"` |  |
+| configs.jetstream.versions[3].startCommand | string | `"/nats-server"` |  |
+| configs.jetstream.versions[3].version | string | `"2.8.2"` |  |
+| configs.jetstream.versions[4].configReloaderImage | string | `"natsio/nats-server-config-reloader:0.7.0"` |  |
+| configs.jetstream.versions[4].metricsExporterImage | string | `"natsio/prometheus-nats-exporter:0.9.1"` |  |
+| configs.jetstream.versions[4].natsImage | string | `"nats:2.8.2-alpine"` |  |
+| configs.jetstream.versions[4].startCommand | string | `"nats-server"` |  |
+| configs.jetstream.versions[4].version | string | `"2.8.2-alpine"` |  |
 | configs.nats.versions | list | See [values.yaml] | Supported versions of NATS event bus |
 | crds.annotations | object | `{}` | Annotations to be added to all CRDs |
 | crds.install | bool | `true` | Install and upgrade CRDs |
