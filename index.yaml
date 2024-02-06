@@ -15493,6 +15493,35 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Merged upstream tag argo-rollouts-2.32.5 (1.6.1-additional-logs)
+          links:
+            - name: GitHub Release
+              url: https://github.com/codefresh-io/argo-rollouts/releases/tag/1.6.1-additional-logs
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v1.6.1-additional-logs
+    created: "2024-02-06T11:26:15.49063141Z"
+    description: A Helm chart for Argo Rollouts
+    digest: 99679be56283ae19b0a804f1ef595386e47f44afd06fb3c10bff285d1d4dccbe
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-rollouts/assets/logo.png
+    keywords:
+    - argoproj
+    - argo-rollouts
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-rollouts
+    sources:
+    - https://github.com/argoproj/argo-rollouts
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-rollouts-2.32.5-4-additional-logs/argo-rollouts-2.32.5-4-additional-logs.tgz
+    version: 2.32.5-4-additional-logs
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Merged upstream tag argo-rollouts-2.32.5 (1.6.1-analysis-fix)
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -20681,4 +20710,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-02-01T16:51:28.000305199Z"
+generated: "2024-02-06T11:26:15.491969785Z"
