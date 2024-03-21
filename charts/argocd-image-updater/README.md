@@ -105,6 +105,7 @@ The `config.registries` value can be used exactly as it looks in the documentati
 | metrics.serviceMonitor.relabelings | list | `[]` | Prometheus [RelabelConfigs] to apply to samples before scraping |
 | metrics.serviceMonitor.selector | object | `{}` | Prometheus ServiceMonitor selector |
 | nameOverride | string | `""` | Global name (argocd-image-updater.name in _helpers.tpl) override |
+| namespaceOverride | string | `""` | Global namespace (argocd-image-updater.namespace in _helpers.tpl) override |
 | nodeSelector | object | `{}` | Kubernetes nodeSelector settings for the deployment |
 | podAnnotations | object | `{}` | Pod Annotations for the deployment |
 | podLabels | object | `{}` | Pod Labels for the deployment |
@@ -115,6 +116,7 @@ The `config.registries` value can be used exactly as it looks in the documentati
 | securityContext | object | `{}` | Security context settings for the deployment |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
+| serviceAccount.labels | object | `{}` | Labels to add to the service account |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | tolerations | list | `[]` | Kubernetes toleration settings for the deployment |
 | updateStrategy | object | `{"type":"Recreate"}` | The deployment strategy to use to replace existing pods with new ones |

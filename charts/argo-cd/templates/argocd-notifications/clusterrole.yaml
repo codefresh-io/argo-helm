@@ -10,13 +10,40 @@ rules:
     {{- toYaml . | nindent 2 }}
   {{- end }}
   - apiGroups:
-    - "argoproj.io"
+    - argoproj.io
     resources:
-    - "applications"
+    - applications
+    - appprojects
     verbs:
     - get
     - list
     - watch
     - update
     - patch
+  - apiGroups:
+    - ""
+    resources:
+    - configmaps
+    - secrets
+    verbs:
+    - list
+    - watch
+  {{- if .Values.notifications.cm.create }}
+  - apiGroups:
+    - ""
+    resourceNames:
+    - argocd-notifications-cm
+    resources:
+    - configmaps
+    verbs:
+    - get
+  {{- end }}
+  - apiGroups:
+    - ""
+    resourceNames:
+    - {{ .Values.notifications.secret.name }}
+    resources:
+    - secrets
+    verbs:
+    - get
 {{- end }}

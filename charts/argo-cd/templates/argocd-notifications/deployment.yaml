@@ -66,6 +66,7 @@ spec:
             - --logformat={{ default .Values.global.logging.format .Values.notifications.logFormat }}
             - --namespace={{ .Release.Namespace }}
             - --argocd-repo-server={{ template "argo-cd.repoServer.fullname" . }}:{{ .Values.repoServer.service.port }}
+            - --secret-name={{ .Values.notifications.secret.name }}
             {{- range .Values.notifications.extraArgs }}
             - {{ . | squote }}
             {{- end }}
@@ -89,6 +90,12 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: application.namespaces
+                  name: argocd-cmd-params-cm
+                  optional: true
+            - name: ARGOCD_NOTIFICATION_CONTROLLER_SELF_SERVICE_NOTIFICATION_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  key: notificationscontroller.selfservice.enabled
                   name: argocd-cmd-params-cm
                   optional: true
           {{- with .Values.notifications.extraEnvFrom }}

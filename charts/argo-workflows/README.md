@@ -78,7 +78,7 @@ For full list of changes, please check ArtifactHub [changelog].
 ### High Availability
 
 This chart installs the non-HA version of Argo Workflows by default. If you want to run in HA mode, you can use [these example values](ci/ha-values.yaml) as a starting point.
-Please see the upstream [Operator Manual's High Availability page](https://argoproj.github.io/argo-workflows/high-availability/) to understand how to scale Argo Workflows in depth.
+Please see the upstream [Operator Manual's High Availability page](https://argo-workflows.readthedocs.io/en/stable/high-availability/) to understand how to scale Argo Workflows in depth.
 
 ### Workflow controller
 
@@ -124,6 +124,7 @@ Fields to note:
 | images.tag | string | `""` | Common tag for Argo Workflows images. Defaults to `.Chart.AppVersion`. |
 | kubeVersionOverride | string | `""` | Override the Kubernetes version, which is used to evaluate certain manifests |
 | nameOverride | string | `nil` | String to partially override "argo-workflows.fullname" template |
+| namespaceOverride | string | `.Release.Namespace` | Override the namespace |
 | singleNamespace | bool | `false` | Restrict Argo to operate only in a single namespace (the namespace of the Helm release) by apply Roles and RoleBindings instead of the Cluster equivalents, and start workflow-controller with the --namespaced flag. Use it in clusters with strict access policy. |
 
 ### Workflow
@@ -354,7 +355,7 @@ Fields to note:
 | artifactRepository.azure | object | `{}` (See [values.yaml]) | Store artifact in Azure Blob Storage |
 | artifactRepository.gcs | object | `{}` (See [values.yaml]) | Store artifact in a GCS object store |
 | artifactRepository.s3 | object | See [values.yaml] | Store artifact in a S3-compliant object store |
-| artifactRepositoryRef | object | `{}` (See [values.yaml]) | The section of [artifact repository ref](https://argoproj.github.io/argo-workflows/artifact-repository-ref/). Each map key is the name of configmap |
+| artifactRepositoryRef | object | `{}` (See [values.yaml]) | The section of [artifact repository ref](https://argo-workflows.readthedocs.io/en/stable/artifact-repository-ref/). Each map key is the name of configmap |
 | customArtifactRepository | object | `{}` | The section of custom artifact repository. Utilize a custom artifact repository that is not one of the current base ones (s3, gcs, azure) |
 | useStaticCredentials | bool | `true` | Use static credentials for S3 (eg. when not using AWS IRSA) |
 
@@ -381,7 +382,7 @@ Fields to note:
 [affinity]: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
 [BackendConfigSpec]: https://cloud.google.com/kubernetes-engine/docs/concepts/backendconfig#backendconfigspec_v1beta1_cloudgooglecom
 [FrontendConfigSpec]: https://cloud.google.com/kubernetes-engine/docs/how-to/ingress-features#configuring_ingress_features_through_frontendconfig_parameters
-[links]: https://argoproj.github.io/argo-workflows/links/
+[links]: https://argo-workflows.readthedocs.io/en/stable/links/
 [columns]: https://github.com/argoproj/argo-workflows/pull/10693
 [Node selector]: https://kubernetes.io/docs/user-guide/node-selection/
 [Pod Disruption Budget]: https://kubernetes.io/docs/tasks/run-application/configure-pdb/
@@ -390,5 +391,5 @@ Fields to note:
 [TopologySpreadConstraints]: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
 [values.yaml]: values.yaml
 [changelog]: https://artifacthub.io/packages/helm/argo/argo-workflows?modal=changelog
-[SSO RBAC]: https://argo-workflows.readthedocs.io/en/latest/argo-server-sso/
-[Argo Server Auth Mode]: https://argo-workflows.readthedocs.io/en/latest/argo-server-auth-mode/
+[SSO RBAC]: https://argo-workflows.readthedocs.io/en/stable/argo-server-sso/
+[Argo Server Auth Mode]: https://argo-workflows.readthedocs.io/en/stable/argo-server-auth-mode/
