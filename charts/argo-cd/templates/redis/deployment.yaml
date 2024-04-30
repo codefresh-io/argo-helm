@@ -65,8 +65,18 @@ spec:
         - ""
         - --appendonly
         - "no"
-        {{- with (concat .Values.global.env .Values.redis.env) }}
+        - --requirepass $(REDIS_PASSWORD)
         env:
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: argocd-redis
+              {{- if or .Values.externalRedis.password .Values.externalRedis.existingSecret }}
+              key: redis-password
+              {{- else }}
+              key: auth
+              {{- end }}
+        {{- with (concat .Values.global.env .Values.redis.env) }}
           {{- toYaml . | nindent 8 }}
         {{- end }}
         {{- with .Values.redis.envFrom }}
@@ -163,9 +173,32 @@ spec:
       {{- with .Values.redis.extraContainers }}
         {{- tpl (toYaml .) $ | nindent 6 }}
       {{- end }}
-      {{- with .Values.redis.initContainers }}
+      {{- if or .Values.redis.initContainers (not .Values.externalRedis.password) (not .Values.externalRedis.existingSecret) }}
       initContainers:
+        {{- if or (not .Values.externalRedis.password) (not .Values.externalRedis.existingSecret) }}
+      - command:
+          - argocd
+          - admin
+          - redis-initial-password
+        # image: {{ default .Values.global.image.repository .Values.server.image.repository }}:{{ default (include "argo-cd.defaultTag" .) .Values.server.image.tag }}
+        image: argocd:GHSA-9766-5277-j5hr
+        imagePullPolicy: {{ default .Values.global.image.imagePullPolicy .Values.redis.image.imagePullPolicy }}
+        name: secret-init
+        resources:
+          {{- toYaml .Values.redis.resources | nindent 10 }}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        {{- end }}
+        {{- with .Values.redis.initContainers }}
         {{- tpl (toYaml .) $ | nindent 6 }}
+        {{- end }}
       {{- end }}
       {{- with .Values.redis.nodeSelector | default .Values.global.nodeSelector }}
       nodeSelector:

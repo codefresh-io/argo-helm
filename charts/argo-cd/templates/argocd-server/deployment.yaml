@@ -243,15 +243,18 @@ spec:
           - name: REDIS_USERNAME
             valueFrom:
               secretKeyRef:
-                name: {{ default (include "argo-cd.redis.fullname" .) .Values.externalRedis.existingSecret }}
+                name: {{ default "argocd-redis" .Values.externalRedis.existingSecret }}
                 key: redis-username
                 optional: true
           - name: REDIS_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ default (include "argo-cd.redis.fullname" .) .Values.externalRedis.existingSecret }}
+                name: {{ default "argocd-redis" .Values.externalRedis.existingSecret }}
+                {{- if or .Values.externalRedis.password .Values.externalRedis.existingSecret }}
                 key: redis-password
-                optional: true
+                {{- else }}
+                key: auth
+                {{- end }}
           - name: ARGOCD_DEFAULT_CACHE_EXPIRATION
             valueFrom:
               configMapKeyRef:
