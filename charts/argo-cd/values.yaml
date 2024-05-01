@@ -1601,6 +1601,21 @@ externalRedis:
   # -- External Redis Secret annotations
   secretAnnotations: {}
 
+redisSecretInit:
+  # -- Enable redis secret generator/init Job
+  enabled: true
+
+  serviceAccount:
+    # -- Create a service account for the redis pod
+    create: false
+    # -- Service account name for redis pod
+    name: ""
+    # -- Annotations applied to created service account
+    annotations: {}
+    # -- Automount API credentials for the Service Account
+    automountServiceAccountToken: false
+
+
 ## Server
 server:
   # -- Argo CD server name
