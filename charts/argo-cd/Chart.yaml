@@ -28,3 +28,5 @@ annotations:
   artifacthub.io/changes: |
     - kind: changed
       description: Upgrade argo-cd to v2.10-2024.5.14-9315e75e1
+    - kind: changed
+      description: Fix for security vulnerability GHSA-9766-5277-j5hr - Redis authentication
