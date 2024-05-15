@@ -4,6 +4,3 @@ output
 .idea
 **/*.tgz
 **/charts/*/charts
-
-# only ignore the values.yaml file at the root of the repo
-/values.yaml
