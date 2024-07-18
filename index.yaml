@@ -17431,6 +17431,52 @@ entries:
   argo-workflows:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Add `app:` label to components to match upstream
+        - kind: changed
+          description: Bump argo-workflows to v3.5.8-cap-CR-22608
+        - kind: fixed
+          description: Add missing serviceLabels to server service
+        - kind: fixed
+          description: Correct sample of secondsAfterCompletion
+        - kind: added
+          description: Added option to add service accounts to RoleBindings
+        - kind: changed
+          description: Fix hyphen typo in values.yaml comments
+        - kind: added
+          description: Add the ability to use a headless service for the workflow controller
+        - kind: added
+          description: Check Prometheus CRDs are available before creating Service Monitor resource(s)
+        - kind: added
+          description: Support namespaceOverride
+        - kind: added
+          description: Disable leader election if only 1 repl of the Workflow Controller
+        - kind: fixed
+          description: Add caSecret in the artifactory.s3 configuration values.
+        - kind: fixed
+          description: Update argo-workflows documentation links to readthedocs
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v3.5.8-cap-CR-22608
+    created: "2024-07-18T06:44:02.209520287Z"
+    description: A Helm chart for Argo Workflows
+    digest: 36ae3e34215228ef58238519196048747c75d33ea1cc3082c97a091d745d3e1b
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-workflows.readthedocs.io/en/stable/assets/logo.png
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-workflows-0.41.11-v3.5.8-cap-CR-22608/argo-workflows-0.41.11-v3.5.8-cap-CR-22608.tgz
+    version: 0.41.11-v3.5.8-cap-CR-22608
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Add MySQL persistence support explicitly on README
       artifacthub.io/signKey: |
@@ -21428,4 +21474,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-07-09T14:29:10.712333585Z"
+generated: "2024-07-18T06:44:02.21105772Z"
