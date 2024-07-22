@@ -1588,6 +1588,41 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Improve processing of webhook events
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v2.11-2024.7.20-8eb51f7a6
+    created: "2024-07-22T07:57:03.916592878Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.26.1
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: c8b9a04da9df6a2af211387887e07f2c075165626df144ef6dcaf0f23fe1d11e
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-6.11.1-5-cap-2.11-2024.7.20-8eb51f7a6/argo-cd-6.11.1-5-cap-2.11-2024.7.20-8eb51f7a6.tgz
+    version: 6.11.1-5-cap-2.11-2024.7.20-8eb51f7a6
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Upgrade argo-cd to v2.11-2024.7.3-c0941bcb4 with fix - report application event from queue instead of requesting actual state again which potentially means doesn't get same data as in original event
         - kind: fixed
@@ -21474,4 +21509,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-07-18T06:44:02.21105772Z"
+generated: "2024-07-22T07:57:03.918726704Z"
