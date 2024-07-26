@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: v1.6.1-CR-23199
+appVersion: v1.7.1-CR-24605
 description: A Helm chart for Argo Rollouts
 name: argo-rollouts
-version: 2.32.5-5-skip-valid-for-plug
+version: 2.37.2-1-upgrade-rollouts
 home: https://github.com/argoproj/argo-helm
 icon: https://argoproj.github.io/argo-rollouts/assets/logo.png
 keywords:
@@ -19,7 +19,7 @@ annotations:
     url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Cherry pick https://github.com/argoproj/argo-rollouts/pull/2898 to release-1.6 branch
+      description: Sync argo-rollouts with upstream v1.7.1
       links:
         - name: GitHub Release
-          url: https://github.com/codefresh-io/argo-rollouts/releases/tag/v1.6.1-CR-23199
+          url: https://github.com/codefresh-io/argo-rollouts/releases/tag/v1.7.1-CR-24605
