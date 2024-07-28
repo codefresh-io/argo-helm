@@ -69,9 +69,9 @@ done
 | configs.jetstream.streamConfig.maxBytes | int | `-1` |  |
 | configs.jetstream.streamConfig.maxMsgs | int | `50000` |  |
 | configs.jetstream.streamConfig.replicas | int | `3` |  |
-| configs.jetstream.versions[0].configReloaderImage | string | `"natsio/nats-server-config-reloader:0.7.0"` |  |
-| configs.jetstream.versions[0].metricsExporterImage | string | `"natsio/prometheus-nats-exporter:0.9.1"` |  |
-| configs.jetstream.versions[0].natsImage | string | `"nats:2.8.1"` |  |
+| configs.jetstream.versions[0].configReloaderImage | string | `"natsio/nats-server-config-reloader:0.14.0"` |  |
+| configs.jetstream.versions[0].metricsExporterImage | string | `"natsio/prometheus-nats-exporter:0.14.0"` |  |
+| configs.jetstream.versions[0].natsImage | string | `"nats:2.10.10"` |  |
 | configs.jetstream.versions[0].startCommand | string | `"/nats-server"` |  |
 | configs.jetstream.versions[0].version | string | `"latest"` |  |
 | configs.jetstream.versions[1].configReloaderImage | string | `"natsio/nats-server-config-reloader:0.7.0"` |  |
@@ -94,6 +94,26 @@ done
 | configs.jetstream.versions[4].natsImage | string | `"nats:2.8.2-alpine"` |  |
 | configs.jetstream.versions[4].startCommand | string | `"nats-server"` |  |
 | configs.jetstream.versions[4].version | string | `"2.8.2-alpine"` |  |
+| configs.jetstream.versions[5].configReloaderImage | string | `"natsio/nats-server-config-reloader:0.7.0"` |  |
+| configs.jetstream.versions[5].metricsExporterImage | string | `"natsio/prometheus-nats-exporter:0.9.1"` |  |
+| configs.jetstream.versions[5].natsImage | string | `"nats:2.9.1"` |  |
+| configs.jetstream.versions[5].startCommand | string | `"/nats-server"` |  |
+| configs.jetstream.versions[5].version | string | `"2.9.1"` |  |
+| configs.jetstream.versions[6].configReloaderImage | string | `"natsio/nats-server-config-reloader:0.7.0"` |  |
+| configs.jetstream.versions[6].metricsExporterImage | string | `"natsio/prometheus-nats-exporter:0.9.1"` |  |
+| configs.jetstream.versions[6].natsImage | string | `"nats:2.9.12"` |  |
+| configs.jetstream.versions[6].startCommand | string | `"/nats-server"` |  |
+| configs.jetstream.versions[6].version | string | `"2.9.12"` |  |
+| configs.jetstream.versions[7].configReloaderImage | string | `"natsio/nats-server-config-reloader:0.7.0"` |  |
+| configs.jetstream.versions[7].metricsExporterImage | string | `"natsio/prometheus-nats-exporter:0.9.1"` |  |
+| configs.jetstream.versions[7].natsImage | string | `"nats:2.9.16"` |  |
+| configs.jetstream.versions[7].startCommand | string | `"/nats-server"` |  |
+| configs.jetstream.versions[7].version | string | `"2.9.16"` |  |
+| configs.jetstream.versions[8].configReloaderImage | string | `"natsio/nats-server-config-reloader:0.14.0"` |  |
+| configs.jetstream.versions[8].metricsExporterImage | string | `"natsio/prometheus-nats-exporter:0.14.0"` |  |
+| configs.jetstream.versions[8].natsImage | string | `"nats:2.10.10"` |  |
+| configs.jetstream.versions[8].startCommand | string | `"/nats-server"` |  |
+| configs.jetstream.versions[8].version | string | `"2.10.10"` |  |
 | configs.nats.versions | list | See [values.yaml] | Supported versions of NATS event bus |
 | crds.annotations | object | `{}` | Annotations to be added to all CRDs |
 | crds.install | bool | `true` | Install and upgrade CRDs |
@@ -111,6 +131,7 @@ done
 | global.podLabels | object | `{}` | Labels for the all deployed pods |
 | global.securityContext | object | `{}` | Toggle and define securityContext. See [values.yaml] |
 | nameOverride | string | `"argo-events"` | Provide a name in place of `argo-events` |
+| namespaceOverride | string | `.Release.Namespace` | Override the namespace |
 | openshift | bool | `false` | Deploy on OpenShift |
 
 ### Controller
