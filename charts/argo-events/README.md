@@ -38,6 +38,10 @@ Some users would prefer to install the CRDs _outside_ of the chart. You can disa
 
 You can install the CRDs manually from `templates/crds` folder.
 
+### 2.4.*
+
+At github events source githubUploadURL is required when githubBaseURL is set
+
 ### 2.0.*
 
 Custom resource definitions were moved to `templates` folder so they can be managed by Helm.
@@ -58,13 +62,13 @@ done
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| configs.jetstream.settings.maxFileStore | int | `-1` | Maximum size of the file storage (e.g. 20G) |
-| configs.jetstream.settings.maxMemoryStore | int | `-1` | Maximum size of the memory storage (e.g. 1G) |
-| configs.jetstream.streamConfig.duplicates | string | `"300s"` | Not documented at the moment |
-| configs.jetstream.streamConfig.maxAge | string | `"72h"` | Maximum age of existing messages, i.e. “72h”, “4h35m” |
-| configs.jetstream.streamConfig.maxBytes | string | `"1GB"` |  |
-| configs.jetstream.streamConfig.maxMsgs | int | `1000000` | Maximum number of messages before expiring oldest message |
-| configs.jetstream.streamConfig.replicas | int | `3` | Number of replicas, defaults to 3 and requires minimal 3 |
+| configs.jetstream.settings.max_file_store | string | `"1TB"` |  |
+| configs.jetstream.settings.max_memory_store | int | `-1` |  |
+| configs.jetstream.streamConfig.duplicates | string | `"300s"` |  |
+| configs.jetstream.streamConfig.maxAge | string | `"168h"` |  |
+| configs.jetstream.streamConfig.maxBytes | int | `-1` |  |
+| configs.jetstream.streamConfig.maxMsgs | int | `50000` |  |
+| configs.jetstream.streamConfig.replicas | int | `3` |  |
 | configs.jetstream.versions[0].configReloaderImage | string | `"natsio/nats-server-config-reloader:0.14.0"` |  |
 | configs.jetstream.versions[0].metricsExporterImage | string | `"natsio/prometheus-nats-exporter:0.14.0"` |  |
 | configs.jetstream.versions[0].natsImage | string | `"nats:2.10.10"` |  |
@@ -120,7 +124,7 @@ done
 | global.additionalLabels | object | `{}` | Additional labels to add to all resources |
 | global.hostAliases | list | `[]` | Mapping between IP and hostnames that will be injected as entries in the pod's hosts files |
 | global.image.imagePullPolicy | string | `"IfNotPresent"` | If defined, a imagePullPolicy applied to all Argo Events deployments |
-| global.image.repository | string | `"quay.io/argoproj/argo-events"` | If defined, a repository applied to all Argo Events deployments |
+| global.image.repository | string | `"quay.io/codefresh/argo-events"` | If defined, a repository applied to all Argo Events deployments |
 | global.image.tag | string | `""` | Overrides the global Argo Events image tag whose default is the chart appVersion |
 | global.imagePullSecrets | list | `[]` | If defined, uses a Secret to pull an image from a private Docker registry or repository |
 | global.podAnnotations | object | `{}` | Annotations for the all deployed pods |
@@ -193,7 +197,7 @@ done
 |-----|------|---------|-------------|
 | webhook.affinity | object | `{}` | Assign custom [affinity] rules to the deployment |
 | webhook.containerSecurityContext | object | `{}` | Event controller container-level security context |
-| webhook.enabled | bool | `false` | Enable admission webhook. Applies only for cluster-wide installation |
+| webhook.enabled | bool | `true` | Enable admission webhook. Applies only for cluster-wide installation |
 | webhook.env | list | `[]` (See [values.yaml]) | Environment variables to pass to event controller |
 | webhook.envFrom | list | `[]` (See [values.yaml]) | envFrom to pass to event controller |
 | webhook.image.imagePullPolicy | string | `""` (defaults to global.image.imagePullPolicy) | Image pull policy for the event controller |
