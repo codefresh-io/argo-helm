@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   publish:
-    if: github.repository == 'argoproj/argo-helm'
+    if: github.repository == 'codefresh-io/argo-helm'
     permissions:
       contents: write  # for helm/chart-releaser-action to push chart release and create a release
       packages: write  # to push OCI chart package to GitHub Registry
@@ -38,7 +38,7 @@ jobs:
       - name: Fetch current Chart Index
         run: |
           git checkout origin/gh-pages index.yaml
-      
+
       - name: Package chart
         run: |
           rm -rf .cr-release-packages
