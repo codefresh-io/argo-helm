@@ -358,6 +358,7 @@ Because [Argo CD Extensions] is now deprecated and no further changes will be ma
 If you used old mechanism, please move to new mechanism. For more details, please refer `.Values.server.extensions` in values.yaml.
 
 ### 5.35.0
+
 This version supports Kubernetes version `>=1.23.0-0`. The current supported version of Kubernetes is v1.24 or later and we align with the Amazon EKS calendar, because many AWS users follow a conservative approach.
 
 Please see more information about EoL: [Amazon EKS EoL][EKS EoL].
