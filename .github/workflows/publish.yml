@@ -5,8 +5,6 @@ on:
   push:
     branches:
       - argo-rollouts
-    paths:
-      - "charts/**"
 
 permissions:
   contents: read
