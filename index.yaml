@@ -16302,6 +16302,35 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Sync argo-rollouts with upstream v1.7.1
+          links:
+            - name: GitHub Release
+              url: https://github.com/codefresh-io/argo-rollouts/releases/tag/v1.7.1-CR-24605
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v1.7.1-CR-24605
+    created: "2024-07-30T09:00:02.363555562Z"
+    description: A Helm chart for Argo Rollouts
+    digest: 739c27689fc55e55a20df8fe0b5377c731a6c20e6902e07a358eedeef2aa3c52
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-rollouts/assets/logo.png
+    keywords:
+    - argoproj
+    - argo-rollouts
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-rollouts
+    sources:
+    - https://github.com/argoproj/argo-rollouts
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-rollouts-2.37.3-1-v1.7.1-CR-24605/argo-rollouts-2.37.3-1-v1.7.1-CR-24605.tgz
+    version: 2.37.3-1-v1.7.1-CR-24605
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Merged upstream tag argo-rollouts-2.32.5 (1.6.1-additional-logs)
           links:
             - name: GitHub Release
@@ -21565,4 +21594,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-07-30T08:53:47.875613946Z"
+generated: "2024-07-30T09:00:02.365039514Z"
