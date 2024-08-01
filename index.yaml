@@ -17586,6 +17586,30 @@ entries:
   argo-workflows:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Bump argo-workflows to v3.5.9-cap-CR-24929
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v3.5.9-cap-CR-24929
+    created: "2024-08-01T06:52:58.528854709Z"
+    description: A Helm chart for Argo Workflows
+    digest: 7d0314783334dd76137d3621f5d3f7cd47a0abd1b33c736f006027c7875b4f20
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-workflows.readthedocs.io/en/stable/assets/logo.png
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-workflows-0.41.12-v3.5.9-cap-CR-24929/argo-workflows-0.41.12-v3.5.9-cap-CR-24929.tgz
+    version: 0.41.12-v3.5.9-cap-CR-24929
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: Add `app:` label to components to match upstream
         - kind: changed
@@ -21629,4 +21653,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-07-31T11:01:51.311730581Z"
+generated: "2024-08-01T06:52:58.530323654Z"
