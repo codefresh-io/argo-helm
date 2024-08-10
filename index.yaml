@@ -1595,6 +1595,41 @@ entries:
         url: https://argoproj.github.io/argo-helm/pgp_keys.asc
     apiVersion: v2
     appVersion: v2.11-2024.7.30-a31bf96bb
+    created: "2024-08-10T12:12:19.077774937Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.26.1
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 3c3370c6684e6cbd25556fd35b29851c259c96b268ea97ab440024f09b9e6554
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-6.11.1-6-cap-2.11-2024.7.30-a31bf96bb/argo-cd-6.11.1-6-cap-2.11-2024.7.30-a31bf96bb.tgz
+    version: 6.11.1-6-cap-2.11-2024.7.30-a31bf96bb
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Upgrade argo-cd to v2.11-2024.7.30-a31bf96bb with fix - self heal is not working in monorepo
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v2.11-2024.7.30-a31bf96bb
     created: "2024-07-31T11:01:51.309262277Z"
     dependencies:
     - condition: redis-ha.enabled
@@ -21653,4 +21688,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-08-01T06:52:58.530323654Z"
+generated: "2024-08-10T12:12:19.08003441Z"
