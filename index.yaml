@@ -1589,6 +1589,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Upgrade argo-cd to v2.11-2024.8.19-6be897266 with v1 reporter removal
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v2.11-2024.8.19-6be897266
+    created: "2024-08-28T05:29:38.121085239Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.26.1
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 9d4080079817dea45072ace02bbe8a7c574b1b1525216e594867dd3c1bbaf158
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-6.11.1-7-cap-2.11-2024.8.19-6be897266/argo-cd-6.11.1-7-cap-2.11-2024.8.19-6be897266.tgz
+    version: 6.11.1-7-cap-2.11-2024.8.19-6be897266
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgrade argo-cd to v2.11-2024.7.30-a31bf96bb with fix - self heal is not working in monorepo
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -21688,4 +21723,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-08-10T12:12:19.08003441Z"
+generated: "2024-08-28T05:29:38.123492745Z"
