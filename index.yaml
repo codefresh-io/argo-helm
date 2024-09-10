@@ -1589,6 +1589,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Upgrade argo-cd to v2.12.3
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v2.12-2024.9.3-6f8e0c7e2
+    created: "2024-09-10T14:20:43.641042768Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.26.1
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 4834815709151174388939a7c7bc7d7fead4b78431ff1469eb01b647072134c2
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-7.4.7-0-cap-2.12-2024.9.3-6f8e0c7e2/argo-cd-7.4.7-0-cap-2.12-2024.9.3-6f8e0c7e2.tgz
+    version: 7.4.7-0-cap-2.12-2024.9.3-6f8e0c7e2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgrade argo-cd to v2.11-2024.8.19-6be897266 with v1 reporter removal
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -21758,4 +21793,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-09-06T08:27:04.285986072Z"
+generated: "2024-09-10T14:20:43.643115331Z"
