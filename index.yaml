@@ -1589,6 +1589,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Fix extra env in acr controller deployment.yaml
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v2.12-2024.9.30-a87492b22
+    created: "2024-10-04T11:34:16.852808818Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.26.1
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 1c19576b0f7543870f4b012195a6223a4fabdd7683a1e2d0430f52aa3ba07897
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-7.4.7-2-cap-2.12-2024.9.30-a87492b22/argo-cd-7.4.7-2-cap-2.12-2024.9.30-a87492b22.tgz
+    version: 7.4.7-2-cap-2.12-2024.9.30-a87492b22
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgrade argo-cd to v2.12-2024.9.9-ba613c5bd with reporting of resources health errors on level with application event
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -21898,4 +21933,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-10-03T17:36:23.301847987Z"
+generated: "2024-10-04T11:34:16.854931639Z"
