@@ -1589,6 +1589,43 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: merge https://github.com/argoproj/argo-cd/pull/19799 to fork
+        - kind: changed
+          description: acr controller minor fixes
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v2.12-2024.10.17-36fb3f0d1
+    created: "2024-10-18T10:45:51.638555812Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.26.1
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 8b3ab7b980ab05df088847223c4ddea4e3c49ffd4b9db3ca2958c10f4f71ad29
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-7.4.7-5-cap-2.12-2024.10.17-36fb3f0d1/argo-cd-7.4.7-5-cap-2.12-2024.10.17-36fb3f0d1.tgz
+    version: 7.4.7-5-cap-2.12-2024.10.17-36fb3f0d1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: support for arrays in promotion versionSource
         - kind: changed
           description: getting version based on synced revision
@@ -22042,4 +22079,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-10-11T12:52:57.150629142Z"
+generated: "2024-10-18T10:45:51.640608875Z"
