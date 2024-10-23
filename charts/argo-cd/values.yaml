@@ -3957,10 +3957,10 @@ acrController:
   replicas: 1
   ## ACR controller image
   image:
-    # -- Repository to use for the event reporter
+    # -- Repository to use for the acr controller
     # @default -- `""` (defaults to global.image.repository)
     repository: "quay.io/codefresh/argocd"
-    # -- Tag to use for the event reporter
+    # -- Tag to use for the acr controller
     # @default -- `""` (defaults to global.image.tag)
     tag: "v2.12-2024.10.17-36fb3f0d1"
     # -- Image pull policy for the acr controller
