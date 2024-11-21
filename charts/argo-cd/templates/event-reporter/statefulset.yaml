@@ -91,6 +91,10 @@ spec:
                 name: argocd-cmd-params-cm
                 key: server.rootpath
                 optional: true
+          {{- if .Values.global.runtime }}
+          - name: CODEFRESH_RUNTIME_VERSION
+            value: {{ .Values.global.runtime.version }}
+          {{- end }}
           - name: CODEFRESH_URL
             valueFrom:
               configMapKeyRef:
