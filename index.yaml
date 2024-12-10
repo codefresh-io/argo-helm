@@ -18120,6 +18120,30 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Bump argo-workflows to v3.6.2-cap-CR-26293
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v3.6.2-cap-CR-26293
+    created: "2024-12-10T17:48:46.687765252Z"
+    description: A Helm chart for Argo Workflows
+    digest: 342a421b6c41dbe79267441cc80128e1dac2051cd336dd03c4f38bfecf944476
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-workflows.readthedocs.io/en/stable/assets/logo.png
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-workflows-0.45.1-v3.6.2-cap-CR-26293/argo-workflows-0.45.1-v3.6.2-cap-CR-26293.tgz
+    version: 0.45.1-v3.6.2-cap-CR-26293
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Bump argo-workflows to v3.5.9-cap-CR-24929
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -22186,4 +22210,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-12-03T11:35:35.006137944Z"
+generated: "2024-12-10T17:48:46.690197874Z"
