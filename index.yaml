@@ -1589,6 +1589,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: argo-cd updated to v2.12.3-2024.12.17-4d75d35f4 with fix for remove changeRevision changeRevisions fields from protobuf for compatibility with OSS cli
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v2.12.3-2024.12.17-4d75d35f4
+    created: "2024-12-17T15:15:20.331300771Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.26.1
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 2261db63ecc24f374a429bf13e303e0103d3a3bc2595467161c8735279b86867
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-7.4.7-8-cap-2.12.3-2024.12.17-4d75d35f4/argo-cd-7.4.7-8-cap-2.12.3-2024.12.17-4d75d35f4.tgz
+    version: 7.4.7-8-cap-2.12.3-2024.12.17-4d75d35f4
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: argo-cd updated to v2.12.3-2024.12.3-a26fd084e with multi-source applications extended support in event-reporter
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -22210,4 +22245,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-12-10T17:48:46.690197874Z"
+generated: "2024-12-17T15:15:20.334892719Z"
