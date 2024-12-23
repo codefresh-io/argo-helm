@@ -1344,98 +1344,98 @@ NAME: my-release
 
 ### Option 1 - Single Redis instance (default option)
 
-| Key | Type | Default                                             | Description |
-|-----|------|-----------------------------------------------------|-------------|
-| redis.affinity | object | `{}` (defaults to global.affinity preset)           | Assign custom [affinity] rules to the deployment |
-| redis.automountServiceAccountToken | bool | `true`                                              | Automount API credentials for the Service Account into the pod. |
-| redis.containerPorts.metrics | int | `9121`                                              | Metrics container port |
-| redis.containerPorts.redis | int | `6379`                                              | Redis container port |
-| redis.containerSecurityContext | object | See [values.yaml]                                   | Redis container-level security context |
-| redis.deploymentAnnotations | object | `{}`                                                | Annotations to be added to the Redis server Deployment |
-| redis.dnsConfig | object | `{}`                                                | [DNS configuration] |
-| redis.dnsPolicy | string | `"ClusterFirst"`                                    | Alternative DNS policy for Redis server pods |
-| redis.enabled | bool | `true`                                              | Enable redis |
-| redis.env | list | `[]`                                                | Environment variables to pass to the Redis server |
-| redis.envFrom | list | `[]` (See [values.yaml])                            | envFrom to pass to the Redis server |
-| redis.exporter.containerSecurityContext | object | See [values.yaml]                                   | Redis exporter security context |
-| redis.exporter.enabled | bool | `false`                                             | Enable Prometheus redis-exporter sidecar |
-| redis.exporter.env | list | `[]`                                                | Environment variables to pass to the Redis exporter |
-| redis.exporter.image.imagePullPolicy | string | `""` (defaults to global.image.imagePullPolicy)     | Image pull policy for the redis-exporter |
-| redis.exporter.image.repository | string | `"public.ecr.aws/bitnami/redis-exporter"`           | Repository to use for the redis-exporter |
-| redis.exporter.image.tag | string | `"1.58.0"`                                          | Tag to use for the redis-exporter |
-| redis.exporter.livenessProbe.enabled | bool | `false`                                             | Enable Kubernetes liveness probe for Redis exporter |
-| redis.exporter.livenessProbe.failureThreshold | int | `5`                                                 | Minimum consecutive failures for the [probe] to be considered failed after having succeeded |
-| redis.exporter.livenessProbe.initialDelaySeconds | int | `30`                                                | Number of seconds after the container has started before [probe] is initiated |
-| redis.exporter.livenessProbe.periodSeconds | int | `15`                                                | How often (in seconds) to perform the [probe] |
-| redis.exporter.livenessProbe.successThreshold | int | `1`                                                 | Minimum consecutive successes for the [probe] to be considered successful after having failed |
-| redis.exporter.livenessProbe.timeoutSeconds | int | `15`                                                | Number of seconds after which the [probe] times out |
-| redis.exporter.readinessProbe.enabled | bool | `false`                                             | Enable Kubernetes liveness probe for Redis exporter (optional) |
-| redis.exporter.readinessProbe.failureThreshold | int | `5`                                                 | Minimum consecutive failures for the [probe] to be considered failed after having succeeded |
-| redis.exporter.readinessProbe.initialDelaySeconds | int | `30`                                                | Number of seconds after the container has started before [probe] is initiated |
-| redis.exporter.readinessProbe.periodSeconds | int | `15`                                                | How often (in seconds) to perform the [probe] |
-| redis.exporter.readinessProbe.successThreshold | int | `1`                                                 | Minimum consecutive successes for the [probe] to be considered successful after having failed |
-| redis.exporter.readinessProbe.timeoutSeconds | int | `15`                                                | Number of seconds after which the [probe] times out |
-| redis.exporter.resources | object | `{}`                                                | Resource limits and requests for redis-exporter sidecar |
-| redis.extraArgs | list | `[]`                                                | Additional command line arguments to pass to redis-server |
-| redis.extraContainers | list | `[]`                                                | Additional containers to be added to the redis pod |
-| redis.image.imagePullPolicy | string | `""` (defaults to global.image.imagePullPolicy)     | Redis image pull policy |
-| redis.image.repository | string | `"public.ecr.aws/docker/library/redis"`             | Redis repository |
-| redis.image.tag | string | `"7.2.5-alpine"`                                    | Redis tag |
-| redis.imagePullSecrets | list | `[]` (defaults to global.imagePullSecrets)          | Secrets with credentials to pull images from a private registry |
-| redis.initContainers | list | `[]`                                                | Init containers to add to the redis pod |
-| redis.livenessProbe.enabled | bool | `false`                                             | Enable Kubernetes liveness probe for Redis server |
-| redis.livenessProbe.failureThreshold | int | `5`                                                 | Minimum consecutive failures for the [probe] to be considered failed after having succeeded |
-| redis.livenessProbe.initialDelaySeconds | int | `30`                                                | Number of seconds after the container has started before [probe] is initiated |
-| redis.livenessProbe.periodSeconds | int | `15`                                                | How often (in seconds) to perform the [probe] |
-| redis.livenessProbe.successThreshold | int | `1`                                                 | Minimum consecutive successes for the [probe] to be considered successful after having failed |
-| redis.livenessProbe.timeoutSeconds | int | `15`                                                | Number of seconds after which the [probe] times out |
-| redis.metrics.enabled | bool | `false`                                             | Deploy metrics service |
-| redis.metrics.service.annotations | object | `{}`                                                | Metrics service annotations |
-| redis.metrics.service.clusterIP | string | `"None"`                                            | Metrics service clusterIP. `None` makes a "headless service" (no virtual IP) |
-| redis.metrics.service.labels | object | `{}`                                                | Metrics service labels |
-| redis.metrics.service.portName | string | `"http-metrics"`                                    | Metrics service port name |
-| redis.metrics.service.servicePort | int | `9121`                                              | Metrics service port |
-| redis.metrics.service.type | string | `"ClusterIP"`                                       | Metrics service type |
-| redis.metrics.serviceMonitor.additionalLabels | object | `{}`                                                | Prometheus ServiceMonitor labels |
-| redis.metrics.serviceMonitor.annotations | object | `{}`                                                | Prometheus ServiceMonitor annotations |
-| redis.metrics.serviceMonitor.enabled | bool | `false`                                             | Enable a prometheus ServiceMonitor |
-| redis.metrics.serviceMonitor.interval | string | `"30s"`                                             | Interval at which metrics should be scraped |
-| redis.metrics.serviceMonitor.metricRelabelings | list | `[]`                                                | Prometheus [MetricRelabelConfigs] to apply to samples before ingestion |
-| redis.metrics.serviceMonitor.namespace | string | `""`                                                | Prometheus ServiceMonitor namespace |
-| redis.metrics.serviceMonitor.relabelings | list | `[]`                                                | Prometheus [RelabelConfigs] to apply to samples before scraping |
-| redis.metrics.serviceMonitor.scheme | string | `""`                                                | Prometheus ServiceMonitor scheme |
-| redis.metrics.serviceMonitor.selector | object | `{}`                                                | Prometheus ServiceMonitor selector |
-| redis.metrics.serviceMonitor.tlsConfig | object | `{}`                                                | Prometheus ServiceMonitor tlsConfig |
-| redis.name | string | `"redis"`                                           | Redis name |
-| redis.nodeSelector | object | `{}` (defaults to global.nodeSelector)              | [Node selector] |
-| redis.pdb.annotations | object | `{}`                                                | Annotations to be added to Redis pdb |
-| redis.pdb.enabled | bool | `false`                                             | Deploy a [PodDisruptionBudget] for the Redis |
-| redis.pdb.labels | object | `{}`                                                | Labels to be added to Redis pdb |
-| redis.pdb.maxUnavailable | string | `""`                                                | Number of pods that are unavailble after eviction as number or percentage (eg.: 50%). |
-| redis.pdb.minAvailable | string | `""` (defaults to 0 if not specified)               | Number of pods that are available after eviction as number or percentage (eg.: 50%) |
-| redis.podAnnotations | object | `{}`                                                | Annotations to be added to the Redis server pods |
-| redis.podLabels | object | `{}`                                                | Labels to be added to the Redis server pods |
-| redis.priorityClassName | string | `""` (defaults to global.priorityClassName)         | Priority class for redis pods |
-| redis.readinessProbe.enabled | bool | `false`                                             | Enable Kubernetes liveness probe for Redis server |
-| redis.readinessProbe.failureThreshold | int | `5`                                                 | Minimum consecutive failures for the [probe] to be considered failed after having succeeded |
-| redis.readinessProbe.initialDelaySeconds | int | `30`                                                | Number of seconds after the container has started before [probe] is initiated |
-| redis.readinessProbe.periodSeconds | int | `15`                                                | How often (in seconds) to perform the [probe] |
-| redis.readinessProbe.successThreshold | int | `1`                                                 | Minimum consecutive successes for the [probe] to be considered successful after having failed |
-| redis.readinessProbe.timeoutSeconds | int | `15`                                                | Number of seconds after which the [probe] times out |
-| redis.resources | object | `{}`                                                | Resource limits and requests for redis |
-| redis.securityContext | object | See [values.yaml]                                   | Redis pod-level security context |
-| redis.service.annotations | object | `{}`                                                | Redis service annotations |
-| redis.service.labels | object | `{}`                                                | Additional redis service labels |
-| redis.serviceAccount.annotations | object | `{}`                                                | Annotations applied to created service account |
-| redis.serviceAccount.automountServiceAccountToken | bool | `false`                                             | Automount API credentials for the Service Account |
-| redis.serviceAccount.create | bool | `false`                                             | Create a service account for the redis pod |
-| redis.serviceAccount.name | string | `""`                                                | Service account name for redis pod |
-| redis.servicePort | int | `6379`                                              | Redis service port |
-| redis.terminationGracePeriodSeconds | int | `30`                                                | terminationGracePeriodSeconds for container lifecycle hook |
-| redis.tolerations | list | `[]` (defaults to global.tolerations)               | [Tolerations] for use with node taints |
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| redis.affinity | object | `{}` (defaults to global.affinity preset) | Assign custom [affinity] rules to the deployment |
+| redis.automountServiceAccountToken | bool | `true` | Automount API credentials for the Service Account into the pod. |
+| redis.containerPorts.metrics | int | `9121` | Metrics container port |
+| redis.containerPorts.redis | int | `6379` | Redis container port |
+| redis.containerSecurityContext | object | See [values.yaml] | Redis container-level security context |
+| redis.deploymentAnnotations | object | `{}` | Annotations to be added to the Redis server Deployment |
+| redis.dnsConfig | object | `{}` | [DNS configuration] |
+| redis.dnsPolicy | string | `"ClusterFirst"` | Alternative DNS policy for Redis server pods |
+| redis.enabled | bool | `true` | Enable redis |
+| redis.env | list | `[]` | Environment variables to pass to the Redis server |
+| redis.envFrom | list | `[]` (See [values.yaml]) | envFrom to pass to the Redis server |
+| redis.exporter.containerSecurityContext | object | See [values.yaml] | Redis exporter security context |
+| redis.exporter.enabled | bool | `false` | Enable Prometheus redis-exporter sidecar |
+| redis.exporter.env | list | `[]` | Environment variables to pass to the Redis exporter |
+| redis.exporter.image.imagePullPolicy | string | `""` (defaults to global.image.imagePullPolicy) | Image pull policy for the redis-exporter |
+| redis.exporter.image.repository | string | `"public.ecr.aws/bitnami/redis-exporter"` | Repository to use for the redis-exporter |
+| redis.exporter.image.tag | string | `"1.58.0"` | Tag to use for the redis-exporter |
+| redis.exporter.livenessProbe.enabled | bool | `false` | Enable Kubernetes liveness probe for Redis exporter |
+| redis.exporter.livenessProbe.failureThreshold | int | `5` | Minimum consecutive failures for the [probe] to be considered failed after having succeeded |
+| redis.exporter.livenessProbe.initialDelaySeconds | int | `30` | Number of seconds after the container has started before [probe] is initiated |
+| redis.exporter.livenessProbe.periodSeconds | int | `15` | How often (in seconds) to perform the [probe] |
+| redis.exporter.livenessProbe.successThreshold | int | `1` | Minimum consecutive successes for the [probe] to be considered successful after having failed |
+| redis.exporter.livenessProbe.timeoutSeconds | int | `15` | Number of seconds after which the [probe] times out |
+| redis.exporter.readinessProbe.enabled | bool | `false` | Enable Kubernetes liveness probe for Redis exporter (optional) |
+| redis.exporter.readinessProbe.failureThreshold | int | `5` | Minimum consecutive failures for the [probe] to be considered failed after having succeeded |
+| redis.exporter.readinessProbe.initialDelaySeconds | int | `30` | Number of seconds after the container has started before [probe] is initiated |
+| redis.exporter.readinessProbe.periodSeconds | int | `15` | How often (in seconds) to perform the [probe] |
+| redis.exporter.readinessProbe.successThreshold | int | `1` | Minimum consecutive successes for the [probe] to be considered successful after having failed |
+| redis.exporter.readinessProbe.timeoutSeconds | int | `15` | Number of seconds after which the [probe] times out |
+| redis.exporter.resources | object | `{}` | Resource limits and requests for redis-exporter sidecar |
+| redis.extraArgs | list | `[]` | Additional command line arguments to pass to redis-server |
+| redis.extraContainers | list | `[]` | Additional containers to be added to the redis pod |
+| redis.image.imagePullPolicy | string | `""` (defaults to global.image.imagePullPolicy) | Redis image pull policy |
+| redis.image.repository | string | `"public.ecr.aws/docker/library/redis"` | Redis repository |
+| redis.image.tag | string | `"7.2.5-alpine"` | Redis tag |
+| redis.imagePullSecrets | list | `[]` (defaults to global.imagePullSecrets) | Secrets with credentials to pull images from a private registry |
+| redis.initContainers | list | `[]` | Init containers to add to the redis pod |
+| redis.livenessProbe.enabled | bool | `false` | Enable Kubernetes liveness probe for Redis server |
+| redis.livenessProbe.failureThreshold | int | `5` | Minimum consecutive failures for the [probe] to be considered failed after having succeeded |
+| redis.livenessProbe.initialDelaySeconds | int | `30` | Number of seconds after the container has started before [probe] is initiated |
+| redis.livenessProbe.periodSeconds | int | `15` | How often (in seconds) to perform the [probe] |
+| redis.livenessProbe.successThreshold | int | `1` | Minimum consecutive successes for the [probe] to be considered successful after having failed |
+| redis.livenessProbe.timeoutSeconds | int | `15` | Number of seconds after which the [probe] times out |
+| redis.metrics.enabled | bool | `false` | Deploy metrics service |
+| redis.metrics.service.annotations | object | `{}` | Metrics service annotations |
+| redis.metrics.service.clusterIP | string | `"None"` | Metrics service clusterIP. `None` makes a "headless service" (no virtual IP) |
+| redis.metrics.service.labels | object | `{}` | Metrics service labels |
+| redis.metrics.service.portName | string | `"http-metrics"` | Metrics service port name |
+| redis.metrics.service.servicePort | int | `9121` | Metrics service port |
+| redis.metrics.service.type | string | `"ClusterIP"` | Metrics service type |
+| redis.metrics.serviceMonitor.additionalLabels | object | `{}` | Prometheus ServiceMonitor labels |
+| redis.metrics.serviceMonitor.annotations | object | `{}` | Prometheus ServiceMonitor annotations |
+| redis.metrics.serviceMonitor.enabled | bool | `false` | Enable a prometheus ServiceMonitor |
+| redis.metrics.serviceMonitor.interval | string | `"30s"` | Interval at which metrics should be scraped |
+| redis.metrics.serviceMonitor.metricRelabelings | list | `[]` | Prometheus [MetricRelabelConfigs] to apply to samples before ingestion |
+| redis.metrics.serviceMonitor.namespace | string | `""` | Prometheus ServiceMonitor namespace |
+| redis.metrics.serviceMonitor.relabelings | list | `[]` | Prometheus [RelabelConfigs] to apply to samples before scraping |
+| redis.metrics.serviceMonitor.scheme | string | `""` | Prometheus ServiceMonitor scheme |
+| redis.metrics.serviceMonitor.selector | object | `{}` | Prometheus ServiceMonitor selector |
+| redis.metrics.serviceMonitor.tlsConfig | object | `{}` | Prometheus ServiceMonitor tlsConfig |
+| redis.name | string | `"redis"` | Redis name |
+| redis.nodeSelector | object | `{}` (defaults to global.nodeSelector) | [Node selector] |
+| redis.pdb.annotations | object | `{}` | Annotations to be added to Redis pdb |
+| redis.pdb.enabled | bool | `false` | Deploy a [PodDisruptionBudget] for the Redis |
+| redis.pdb.labels | object | `{}` | Labels to be added to Redis pdb |
+| redis.pdb.maxUnavailable | string | `""` | Number of pods that are unavailble after eviction as number or percentage (eg.: 50%). |
+| redis.pdb.minAvailable | string | `""` (defaults to 0 if not specified) | Number of pods that are available after eviction as number or percentage (eg.: 50%) |
+| redis.podAnnotations | object | `{}` | Annotations to be added to the Redis server pods |
+| redis.podLabels | object | `{}` | Labels to be added to the Redis server pods |
+| redis.priorityClassName | string | `""` (defaults to global.priorityClassName) | Priority class for redis pods |
+| redis.readinessProbe.enabled | bool | `false` | Enable Kubernetes liveness probe for Redis server |
+| redis.readinessProbe.failureThreshold | int | `5` | Minimum consecutive failures for the [probe] to be considered failed after having succeeded |
+| redis.readinessProbe.initialDelaySeconds | int | `30` | Number of seconds after the container has started before [probe] is initiated |
+| redis.readinessProbe.periodSeconds | int | `15` | How often (in seconds) to perform the [probe] |
+| redis.readinessProbe.successThreshold | int | `1` | Minimum consecutive successes for the [probe] to be considered successful after having failed |
+| redis.readinessProbe.timeoutSeconds | int | `15` | Number of seconds after which the [probe] times out |
+| redis.resources | object | `{}` | Resource limits and requests for redis |
+| redis.securityContext | object | See [values.yaml] | Redis pod-level security context |
+| redis.service.annotations | object | `{}` | Redis service annotations |
+| redis.service.labels | object | `{}` | Additional redis service labels |
+| redis.serviceAccount.annotations | object | `{}` | Annotations applied to created service account |
+| redis.serviceAccount.automountServiceAccountToken | bool | `false` | Automount API credentials for the Service Account |
+| redis.serviceAccount.create | bool | `false` | Create a service account for the redis pod |
+| redis.serviceAccount.name | string | `""` | Service account name for redis pod |
+| redis.servicePort | int | `6379` | Redis service port |
+| redis.terminationGracePeriodSeconds | int | `30` | terminationGracePeriodSeconds for container lifecycle hook |
+| redis.tolerations | list | `[]` (defaults to global.tolerations) | [Tolerations] for use with node taints |
 | redis.topologySpreadConstraints | list | `[]` (defaults to global.topologySpreadConstraints) | Assign custom [TopologySpreadConstraints] rules to redis |
-| redis.volumeMounts | list | `[]`                                                | Additional volumeMounts to the redis container |
-| redis.volumes | list | `[]`                                                | Additional volumes to the redis pod |
+| redis.volumeMounts | list | `[]` | Additional volumeMounts to the redis container |
+| redis.volumes | list | `[]` | Additional volumes to the redis pod |
 
 ### Option 2 - Redis HA
 
@@ -1443,43 +1443,43 @@ This option uses the following third-party chart to bootstrap a clustered Redis:
 For all available configuration options, please read upstream README and/or chart source.
 The main options are listed here:
 
-| Key | Type | Default                                                                  | Description |
-|-----|------|--------------------------------------------------------------------------|-------------|
-| redis-ha.additionalAffinities | object | `{}`                                                                     | Additional affinities to add to the Redis server pods. |
-| redis-ha.affinity | string | `""`                                                                     | Assign custom [affinity] rules to the Redis pods. |
-| redis-ha.auth | bool | `true`                                                                   | Configures redis-ha with AUTH |
-| redis-ha.containerSecurityContext | object | See [values.yaml]                                                        | Redis HA statefulset container-level security context |
-| redis-ha.enabled | bool | `false`                                                                  | Enables the Redis HA subchart and disables the custom Redis single node deployment |
-| redis-ha.existingSecret | string | `"argocd-redis"`                                                         | Existing Secret to use for redis-ha authentication. By default the redis-secret-init Job is generating this Secret. |
-| redis-ha.exporter.enabled | bool | `false`                                                                  | Enable Prometheus redis-exporter sidecar |
-| redis-ha.exporter.image | string | `"public.ecr.aws/bitnami/redis-exporter"`                                | Repository to use for the redis-exporter |
-| redis-ha.exporter.tag | string | `"1.58.0"`                                                               | Tag to use for the redis-exporter |
-| redis-ha.haproxy.additionalAffinities | object | `{}`                                                                     | Additional affinities to add to the haproxy pods. |
-| redis-ha.haproxy.affinity | string | `""`                                                                     | Assign custom [affinity] rules to the haproxy pods. |
-| redis-ha.haproxy.containerSecurityContext | object | See [values.yaml]                                                        | HAProxy container-level security context |
-| redis-ha.haproxy.enabled | bool | `true`                                                                   | Enabled HAProxy LoadBalancing/Proxy |
-| redis-ha.haproxy.hardAntiAffinity | bool | `true`                                                                   | Whether the haproxy pods should be forced to run on separate nodes. |
-| redis-ha.haproxy.labels | object | `{"app.kubernetes.io/name":"argocd-redis-ha-haproxy"}`                   | Custom labels for the haproxy pod. This is relevant for Argo CD CLI. |
-| redis-ha.haproxy.metrics.enabled | bool | `true`                                                                   | HAProxy enable prometheus metric scraping |
-| redis-ha.haproxy.tolerations | list | `[]`                                                                     | [Tolerations] for use with node taints for haproxy pods. |
-| redis-ha.hardAntiAffinity | bool | `true`                                                                   | Whether the Redis server pods should be forced to run on separate nodes. |
-| redis-ha.image.repository | string | `"public.ecr.aws/docker/library/redis"`                                  | Redis repository |
-| redis-ha.image.tag | string | `"7.2.5-alpine"`                                                         | Redis tag |
-| redis-ha.persistentVolume.enabled | bool | `false`                                                                  | Configures persistence on Redis nodes |
-| redis-ha.redis.config | object | See [values.yaml]                                                        | Any valid redis config options in this section will be applied to each server (see `redis-ha` chart) |
-| redis-ha.redis.config.save | string | `'""'`                                                                   | Will save the DB if both the given number of seconds and the given number of write operations against the DB occurred. `""`  is disabled |
-| redis-ha.redis.masterGroupName | string | `"argocd"`                                                               | Redis convention for naming the cluster group: must match `^[\\w-\\.]+$` and can be templated |
-| redis-ha.tolerations | list | `[]`                                                                     | [Tolerations] for use with node taints for Redis pods. |
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| redis-ha.additionalAffinities | object | `{}` | Additional affinities to add to the Redis server pods. |
+| redis-ha.affinity | string | `""` | Assign custom [affinity] rules to the Redis pods. |
+| redis-ha.auth | bool | `true` | Configures redis-ha with AUTH |
+| redis-ha.containerSecurityContext | object | See [values.yaml] | Redis HA statefulset container-level security context |
+| redis-ha.enabled | bool | `false` | Enables the Redis HA subchart and disables the custom Redis single node deployment |
+| redis-ha.existingSecret | string | `"argocd-redis"` | Existing Secret to use for redis-ha authentication. By default the redis-secret-init Job is generating this Secret. |
+| redis-ha.exporter.enabled | bool | `false` | Enable Prometheus redis-exporter sidecar |
+| redis-ha.exporter.image | string | `"public.ecr.aws/bitnami/redis-exporter"` | Repository to use for the redis-exporter |
+| redis-ha.exporter.tag | string | `"1.58.0"` | Tag to use for the redis-exporter |
+| redis-ha.haproxy.additionalAffinities | object | `{}` | Additional affinities to add to the haproxy pods. |
+| redis-ha.haproxy.affinity | string | `""` | Assign custom [affinity] rules to the haproxy pods. |
+| redis-ha.haproxy.containerSecurityContext | object | See [values.yaml] | HAProxy container-level security context |
+| redis-ha.haproxy.enabled | bool | `true` | Enabled HAProxy LoadBalancing/Proxy |
+| redis-ha.haproxy.hardAntiAffinity | bool | `true` | Whether the haproxy pods should be forced to run on separate nodes. |
+| redis-ha.haproxy.labels | object | `{"app.kubernetes.io/name":"argocd-redis-ha-haproxy"}` | Custom labels for the haproxy pod. This is relevant for Argo CD CLI. |
+| redis-ha.haproxy.metrics.enabled | bool | `true` | HAProxy enable prometheus metric scraping |
+| redis-ha.haproxy.tolerations | list | `[]` | [Tolerations] for use with node taints for haproxy pods. |
+| redis-ha.hardAntiAffinity | bool | `true` | Whether the Redis server pods should be forced to run on separate nodes. |
+| redis-ha.image.repository | string | `"public.ecr.aws/docker/library/redis"` | Redis repository |
+| redis-ha.image.tag | string | `"7.2.4-alpine"` | Redis tag |
+| redis-ha.persistentVolume.enabled | bool | `false` | Configures persistence on Redis nodes |
+| redis-ha.redis.config | object | See [values.yaml] | Any valid redis config options in this section will be applied to each server (see `redis-ha` chart) |
+| redis-ha.redis.config.save | string | `'""'` | Will save the DB if both the given number of seconds and the given number of write operations against the DB occurred. `""`  is disabled |
+| redis-ha.redis.masterGroupName | string | `"argocd"` | Redis convention for naming the cluster group: must match `^[\\w-\\.]+$` and can be templated |
+| redis-ha.tolerations | list | `[]` | [Tolerations] for use with node taints for Redis pods. |
 | redis-ha.topologySpreadConstraints | object | `{"enabled":false,"maxSkew":"","topologyKey":"","whenUnsatisfiable":""}` | Assign custom [TopologySpreadConstraints] rules to the Redis pods. |
-| redis-ha.topologySpreadConstraints.enabled | bool | `false`                                                                  | Enable Redis HA topology spread constraints |
-| redis-ha.topologySpreadConstraints.maxSkew | string | `""` (defaults to `1`)                                                   | Max skew of pods tolerated |
-| redis-ha.topologySpreadConstraints.topologyKey | string | `""` (defaults to `topology.kubernetes.io/zone`)                         | Topology key for spread |
-| redis-ha.topologySpreadConstraints.whenUnsatisfiable | string | `""` (defaults to `ScheduleAnyway`)                                      | Enforcement policy, hard or soft |
-| redis-ha.exporter.image | string | `nil` (follows subchart default)                                         | Exporter image |
-| redis-ha.exporter.tag | string | `nil` (follows subchart default)                                         | Exporter tag |
-| redis-ha.haproxy.image.repository | string | `nil` (follows subchart default)                                         | HAProxy Image Repository |
-| redis-ha.haproxy.image.tag | string | `nil` (follows subchart default)                                         | HAProxy Image Tag |
-| redis-ha.image.repository | string | `nil` (follows subchart default)                                         | Redis image repository |
+| redis-ha.topologySpreadConstraints.enabled | bool | `false` | Enable Redis HA topology spread constraints |
+| redis-ha.topologySpreadConstraints.maxSkew | string | `""` (defaults to `1`) | Max skew of pods tolerated |
+| redis-ha.topologySpreadConstraints.topologyKey | string | `""` (defaults to `topology.kubernetes.io/zone`) | Topology key for spread |
+| redis-ha.topologySpreadConstraints.whenUnsatisfiable | string | `""` (defaults to `ScheduleAnyway`) | Enforcement policy, hard or soft |
+| redis-ha.exporter.image | string | `nil` (follows subchart default) | Exporter image |
+| redis-ha.exporter.tag | string | `nil` (follows subchart default) | Exporter tag |
+| redis-ha.haproxy.image.repository | string | `nil` (follows subchart default) | HAProxy Image Repository |
+| redis-ha.haproxy.image.tag | string | `nil` (follows subchart default) | HAProxy Image Tag |
+| redis-ha.image.repository | string | `nil` (follows subchart default) | Redis image repository |
 
 ### Option 3 - External Redis
 
