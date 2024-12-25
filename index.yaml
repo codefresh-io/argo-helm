@@ -15723,6 +15723,33 @@ entries:
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
         url: https://argoproj.github.io/argo-helm/pgp_keys.asc
     apiVersion: v2
+    appVersion: v1.9.2-cap-CR-26731
+    created: "2024-12-25T07:55:07.640839988Z"
+    description: A Helm chart for Argo Events, the event-driven workflow automation
+      framework
+    digest: bc3216943e173ea12c5edce4f14dd5a22e0a6d0251df16be929247e2252bbb93
+    home: https://github.com/argoproj/argo-helm
+    icon: https://avatars.githubusercontent.com/u/30269780?s=200&v=4
+    keywords:
+    - argoproj
+    - argo-events
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-events
+    sources:
+    - https://github.com/argoproj/argo-events
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-events-2.4.7-1-cap-CR-26731/argo-events-2.4.7-1-cap-CR-26731.tgz
+    version: 2.4.7-1-cap-CR-26731
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Update Jetstream versions as following upstream
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
     appVersion: v1.9.2-cap-CR-24607
     created: "2024-07-28T12:08:22.175006751Z"
     description: A Helm chart for Argo Events, the event-driven workflow automation
@@ -22315,4 +22342,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2024-12-24T08:47:36.646082608Z"
+generated: "2024-12-25T07:55:07.642552113Z"
