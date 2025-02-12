@@ -27,4 +27,4 @@ annotations:
     url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Bump argo-cd to v2.13.3-2025.2.12-7bfd6c858 for CR-27378, CR-27377
+      description: bumped argo-cd to v2.13.3-2025.2.12-7bfd6c858 + redis to 7.4.2 + bumped go-git for security fix  
