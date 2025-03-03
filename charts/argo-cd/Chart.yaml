@@ -27,4 +27,4 @@ annotations:
     url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: bumped argo-cd to v2.13.3-2025.3.3-bddbd99f7 + bumped helm to 3.17.1 + bumped dex to 2.42.0 + bumped golang-jwt/jwt/v4 to 4.5.1 
+      description: bumped argo-cd to v2.13.3-2025.3.3-bddbd99f7 + bumped helm to 3.17.1 + bumped dex to 2.42.0 + bumped golang-jwt/jwt/v4 to 4.5.1
