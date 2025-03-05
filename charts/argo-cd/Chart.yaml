@@ -27,4 +27,4 @@ annotations:
     url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: bumped argo-cd to v2.13.3-2025.3.5-50344f005
+      description: bumped argo-cd to v2.13.3-2025.3.5-50344f005 + bumped git-lfs to 3.6.1
