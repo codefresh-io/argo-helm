@@ -18980,6 +18980,30 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Add default global tolerations and nodeSelector
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v3.6.4-cap-CR-27392
+    created: "2025-05-08T11:18:52.862128908Z"
+    description: A Helm chart for Argo Workflows
+    digest: 991e579c4e70a4884033469d8034d7e84c7393aa7c848b6cee142c0ade662206
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-workflows.readthedocs.io/en/stable/assets/logo.png
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-workflows-0.45.3-v3.6.4-cap-CR-27392/argo-workflows-0.45.3-v3.6.4-cap-CR-27392.tgz
+    version: 0.45.3-v3.6.4-cap-CR-27392
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Bump argo-workflows to v3.6.4-cap-CR-27392
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -23094,4 +23118,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2025-05-08T11:15:22.261063792Z"
+generated: "2025-05-08T11:18:52.863907023Z"
