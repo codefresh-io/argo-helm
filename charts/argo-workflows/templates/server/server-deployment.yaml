@@ -128,7 +128,7 @@ spec:
       {{- with .Values.server.volumes }}
         {{- toYaml . | nindent 6}}
       {{- end }}
-      {{- with .Values.server.nodeSelector | default .Values.global.nodeSelector}}
+      {{- with .Values.server.nodeSelector | default .Values.global.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
