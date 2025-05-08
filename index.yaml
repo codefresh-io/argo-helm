@@ -17643,6 +17643,32 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Add default global tolerations and nodeSelector
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v1.7.2-cap-CR-28008
+    created: "2025-05-08T11:20:34.981392078Z"
+    description: A Helm chart for Argo Rollouts
+    digest: 059f0eb1194ae96b023cf65e03c44cc787534005272bcbae4331c1deba5fd78c
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-rollouts/assets/logo.png
+    keywords:
+    - argoproj
+    - argo-rollouts
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-rollouts
+    sources:
+    - https://github.com/argoproj/argo-rollouts
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-rollouts-2.37.3-4-v1.7.2-cap-CR-28008/argo-rollouts-2.37.3-4-v1.7.2-cap-CR-28008.tgz
+    version: 2.37.3-4-v1.7.2-cap-CR-28008
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Security fixes for Argo Rollouts v1.7.2
           links:
             - name: GitHub Release
@@ -23118,4 +23144,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2025-05-08T11:18:52.863907023Z"
+generated: "2025-05-08T11:20:34.983134219Z"
