@@ -19,4 +19,4 @@ annotations:
     url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Add global tolerations and nodeSelector
+      description: Add default global tolerations and nodeSelector
