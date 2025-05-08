@@ -45,6 +45,10 @@ global:
   deploymentLabels: {}
   # -- Number of old deployment ReplicaSets to retain. The rest will be garbage collected.
   revisionHistoryLimit: 10
+  # -- Default node selector for all components
+  nodeSelector: {}
+  # -- Default tolerations for all components
+  tolerations: []
 
 controller:
   # -- Value of label `app.kubernetes.io/component`

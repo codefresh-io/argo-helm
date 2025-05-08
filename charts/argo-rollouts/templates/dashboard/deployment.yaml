@@ -71,15 +71,15 @@ spec:
         volumeMounts:
           {{- toYaml . | nindent 8 }}
         {{- end }}
-      {{- if .Values.dashboard.nodeSelector }}
+      {{- with .Values.dashboard.nodeSelector | default .Values.global.nodeSelector }}
       nodeSelector:
-        {{- toYaml .Values.dashboard.nodeSelector | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       securityContext:
         {{- toYaml .Values.dashboard.podSecurityContext | nindent 8 }}
-      {{- if .Values.dashboard.tolerations }}
+      {{- with .Values.dashboard.tolerations | default .Values.global.tolerations }}
       tolerations:
-        {{- toYaml .Values.dashboard.tolerations | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- if .Values.dashboard.affinity }}
       affinity:
