@@ -124,8 +124,10 @@ done
 | global.additionalLabels | object | `{}` | Additional labels to add to all resources |
 | global.hostAliases | list | `[]` | Mapping between IP and hostnames that will be injected as entries in the pod's hosts files |
 | global.image.imagePullPolicy | string | `"IfNotPresent"` | If defined, a imagePullPolicy applied to all Argo Events deployments |
+| global.image.nodeSelector | object | `{}` | Default node selector for all components |
 | global.image.repository | string | `"quay.io/codefresh/argo-events"` | If defined, a repository applied to all Argo Events deployments |
 | global.image.tag | string | `""` | Overrides the global Argo Events image tag whose default is the chart appVersion |
+| global.image.tolerations | list | `[]` | Default tolerations for all components |
 | global.imagePullSecrets | list | `[]` | If defined, uses a Secret to pull an image from a private Docker registry or repository |
 | global.podAnnotations | object | `{}` | Annotations for the all deployed pods |
 | global.podLabels | object | `{}` | Labels for the all deployed pods |

@@ -35,6 +35,10 @@ global:
     tag: ""
     # -- If defined, a imagePullPolicy applied to all Argo Events deployments
     imagePullPolicy: IfNotPresent
+    # -- Default node selector for all components
+    nodeSelector: {}
+    # -- Default tolerations for all components
+    tolerations: []
 
   # -- If defined, uses a Secret to pull an image from a private Docker registry or repository
   imagePullSecrets: []
