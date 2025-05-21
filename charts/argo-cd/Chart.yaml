@@ -28,3 +28,4 @@ annotations:
   artifacthub.io/changes: |
     - kind: changed
       description: upgraded redis image to 7.4.3
+      
