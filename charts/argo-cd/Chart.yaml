@@ -18,7 +18,7 @@ maintainers:
     url: https://argoproj.github.io/
 dependencies:
   - name: redis-ha
-    version: 4.33.4
+    version: 4.33.2
     repository: https://dandydeveloper.github.io/charts/
     condition: redis-ha.enabled
 annotations:
@@ -27,6 +27,4 @@ annotations:
     url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: upgrade redis-ha chart to 4.33.4
-    - kind: changed
-      description: upgrade redis image to 7.4.3
+      description: upgraded redis image to 7.4.3
