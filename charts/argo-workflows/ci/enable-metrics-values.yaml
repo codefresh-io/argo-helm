@@ -1,5 +1,4 @@
 crds:
-  install: true
   keep: false
 
 controller:
