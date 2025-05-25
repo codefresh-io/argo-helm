@@ -106,7 +106,8 @@ spec:
             - name: {{ .Values.controller.metricsConfig.portName }}
               containerPort: {{ .Values.controller.metricsConfig.port }}
             - containerPort: 6060
-          livenessProbe: {{ .Values.controller.livenessProbe | toYaml | nindent 12 }}
+          livenessProbe:
+            {{- .Values.controller.livenessProbe | toYaml | nindent 12 }}
         {{- with .Values.controller.extraContainers }}
           {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -118,11 +119,11 @@ spec:
       volumes:
         {{- toYaml . | nindent 6 }}
       {{- end }}
-      {{- with .Values.controller.nodeSelector | default .Values.global.nodeSelector }}
+      {{- with .Values.controller.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.controller.tolerations | default .Values.global.tolerations }}
+      {{- with .Values.controller.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
