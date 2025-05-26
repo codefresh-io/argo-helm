@@ -18,3 +18,5 @@ annotations:
   artifacthub.io/changes: |
     - kind: changed
       description: Bump argo-workflows to v3.6.7-cap-CR-28355
+    - kind: fixed
+      description: Restart server when configMap is updated
