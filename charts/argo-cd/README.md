@@ -714,6 +714,7 @@ NAME: my-release
 | createClusterRoles | bool | `true` | Create cluster roles for cluster-wide installation. |
 | extraObjects | list | `[]` | Array of extra K8s manifests to deploy |
 | fullnameOverride | string | `""` | String to fully override `"argo-cd.fullname"` |
+| installCRDs | bool | `false` |  |
 | kubeVersionOverride | string | `""` | Override the Kubernetes version, which is used to evaluate certain manifests |
 | nameOverride | string | `"argocd"` | Provide a name in place of `argocd` |
 | namespaceOverride | string | `.Release.Namespace` | Override the namespace |

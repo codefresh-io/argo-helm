@@ -125,6 +125,7 @@ Fields to note:
 | images.pullPolicy | string | `"Always"` | imagePullPolicy to apply to all containers |
 | images.pullSecrets | list | `[]` | Secrets with credentials to pull images from a private registry |
 | images.tag | string | `""` | Common tag for Argo Workflows images. Defaults to `.Chart.AppVersion`. |
+| installCRDs | bool | `true` |  |
 | kubeVersionOverride | string | `""` | Override the Kubernetes version, which is used to evaluate certain manifests |
 | nameOverride | string | `nil` | String to partially override "argo-workflows.fullname" template |
 | namespaceOverride | string | `.Release.Namespace` | Override the namespace |
