@@ -1,7 +1,6 @@
 # Test with artifact repository
 crds:
   keep: false
-  install: true
 
 useStaticCredentials: true
 artifactRepository:
