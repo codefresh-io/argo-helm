@@ -114,12 +114,14 @@ Fields to note:
 | apiVersionOverrides.monitoring | string | `""` | String to override apiVersion of monitoring CRDs (ServiceMonitor) rendered by this helm chart |
 | commonLabels | object | `{}` | Labels to set on all resources |
 | crds.annotations | object | `{}` | Annotations to be added to all CRDs |
-| crds.install | bool | `true` | Install and upgrade CRDs |
+| crds.install | bool | `false` | Install and upgrade CRDs |
 | crds.keep | bool | `true` | Keep CRDs on chart uninstall |
 | createAggregateRoles | bool | `true` | Create ClusterRoles that extend existing ClusterRoles to interact with Argo Workflows CRDs. |
 | emissary.images | list | `[]` | The command/args for each image on workflow, needed when the command is not specified and the emissary executor is used. |
 | extraObjects | list | `[]` | Array of extra K8s manifests to deploy |
 | fullnameOverride | string | `nil` | String to fully override "argo-workflows.fullname" template |
+| global.nodeSelector | object | `{}` | Default node selector for all components |
+| global.tolerations | list | `[]` | Default tolerations for all components |
 | images.pullPolicy | string | `"Always"` | imagePullPolicy to apply to all containers |
 | images.pullSecrets | list | `[]` | Secrets with credentials to pull images from a private registry |
 | images.tag | string | `""` | Common tag for Argo Workflows images. Defaults to `.Chart.AppVersion`. |
@@ -162,7 +164,7 @@ Fields to note:
 | controller.extraEnv | list | `[]` | Extra environment variables to provide to the controller container |
 | controller.extraInitContainers | list | `[]` | Enables init containers to be added to the controller deployment |
 | controller.image.registry | string | `"quay.io"` | Registry to use for the controller |
-| controller.image.repository | string | `"argoproj/workflow-controller"` | Registry to use for the controller |
+| controller.image.repository | string | `"codefresh/workflow-controller"` | Registry to use for the controller |
 | controller.image.tag | string | `""` | Image tag for the workflow controller. Defaults to `.Values.images.tag`. |
 | controller.initialDelay | string | `nil` | Resolves ongoing, uncommon AWS EKS bug: https://github.com/argoproj/argo-workflows/pull/4224 |
 | controller.instanceID.enabled | bool | `false` | Configures the controller to filter workflow submissions to only those which have a matching instanceID attribute. |
@@ -195,7 +197,7 @@ Fields to note:
 | controller.namespaceParallelism | string | `nil` | Limits the maximum number of incomplete workflows in a namespace |
 | controller.navColor | string | `""` | Set ui navigation bar background color |
 | controller.nodeEvents.enabled | bool | `true` | Enable to emit events on node completion. |
-| controller.nodeSelector | object | `{"kubernetes.io/os":"linux"}` | [Node selector] |
+| controller.nodeSelector | object | `{}` | [Node selector] |
 | controller.parallelism | string | `nil` | parallelism dictates how many workflows can be running at the same time |
 | controller.pdb.enabled | bool | `false` | Configure [Pod Disruption Budget] for the controller pods |
 | controller.persistence | object | `{}` | enable Workflow Archive to store the status of workflows. Postgres and MySQL (>= 5.7.8) are available. |
@@ -239,7 +241,7 @@ Fields to note:
 | controller.topologySpreadConstraints | list | `[]` | Assign custom [TopologySpreadConstraints] rules to the workflow controller |
 | controller.volumeMounts | list | `[]` | Additional volume mounts to the controller main container |
 | controller.volumes | list | `[]` | Additional volumes to the controller pod |
-| controller.workflowDefaults | object | `{}` | Default values that will apply to all Workflows from this controller, unless overridden on the Workflow-level. Only valid for 2.7+ |
+| controller.workflowDefaults | object | `{"spec":{"podGC":{"strategy":"OnWorkflowCompletion"},"ttlStrategy":{"secondsAfterCompletion":86400,"secondsAfterFailure":86400}}}` | Default values that will apply to all Workflows from this controller, unless overridden on the Workflow-level. Only valid for 2.7+ |
 | controller.workflowEvents.enabled | bool | `true` | Enable to emit events on workflow status changes. |
 | controller.workflowNamespaces | list | `["default"]` | Specify all namespaces where this workflow controller instance will manage workflows. This controls where the service account and RBAC resources will be created. Only valid when singleNamespace is false. |
 | controller.workflowRestrictions | object | `{}` | Restricts the Workflows that the controller will process. Only valid for 2.9+ |
@@ -264,7 +266,7 @@ Fields to note:
 | executor.env | list | `[]` | Adds environment variables for the executor. |
 | executor.image.pullPolicy | string | `""` | Image PullPolicy to use for the Workflow Executors. Defaults to `.Values.images.pullPolicy`. |
 | executor.image.registry | string | `"quay.io"` | Registry to use for the Workflow Executors |
-| executor.image.repository | string | `"argoproj/argoexec"` | Repository to use for the Workflow Executors |
+| executor.image.repository | string | `"codefresh/argoexec"` | Repository to use for the Workflow Executors |
 | executor.image.tag | string | `""` | Image tag for the workflow executor. Defaults to `.Values.images.tag`. |
 | executor.resources | object | `{}` | Resource limits and requests for the Workflow Executors |
 | executor.securityContext | object | `{}` | sets security context for the executor container |
@@ -299,7 +301,7 @@ Fields to note:
 | server.extraInitContainers | list | `[]` | Enables init containers to be added to the server deployment |
 | server.hostAliases | list | `[]` | Mapping between IP and hostnames that will be injected as entries in the pod's hosts files |
 | server.image.registry | string | `"quay.io"` | Registry to use for the server |
-| server.image.repository | string | `"argoproj/argocli"` | Repository to use for the server |
+| server.image.repository | string | `"codefresh/argocli"` | Repository to use for the server |
 | server.image.tag | string | `""` | Image tag for the Argo Workflows server. Defaults to `.Values.images.tag`. |
 | server.ingress.annotations | object | `{}` | Additional ingress annotations |
 | server.ingress.enabled | bool | `false` | Enable an ingress resource |
@@ -326,7 +328,7 @@ Fields to note:
 | server.logging.globallevel | string | `"0"` | Set the glog logging level |
 | server.logging.level | string | `"info"` | Set the logging level (one of: `debug`, `info`, `warn`, `error`) |
 | server.name | string | `"server"` | Server name string |
-| server.nodeSelector | object | `{"kubernetes.io/os":"linux"}` | [Node selector] |
+| server.nodeSelector | object | `{}` | [Node selector] |
 | server.pdb.enabled | bool | `false` | Configure [Pod Disruption Budget] for the server pods |
 | server.podAnnotations | object | `{}` | optional map of annotations to be applied to the ui Pods |
 | server.podLabels | object | `{}` | Optional labels to add to the UI pods |

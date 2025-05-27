@@ -1,4 +1,7 @@
 # Sample values for High Availability configuration, following https://argo-workflows.readthedocs.io/en/stable/high-availability/
+crds:
+  install: true
+  keep: false
 
 controller:
   # in v3.0+, a second controller can be ran as a hot-standby: https://argo-workflows.readthedocs.io/en/stable/high-availability/#workflow-controller

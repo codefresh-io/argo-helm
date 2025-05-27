@@ -1,3 +1,9 @@
+global:
+  # -- Default node selector for all components
+  nodeSelector: {}
+  # -- Default tolerations for all components
+  tolerations: []
+
 images:
   # -- Common tag for Argo Workflows images. Defaults to `.Chart.AppVersion`.
   tag: ""
@@ -10,7 +16,7 @@ images:
 ## Custom resource configuration
 crds:
   # -- Install and upgrade CRDs
-  install: true
+  install: false
   # -- Keep CRDs on chart uninstall
   keep: true
   # -- Annotations to be added to all CRDs
@@ -85,7 +91,7 @@ controller:
     # -- Registry to use for the controller
     registry: quay.io
     # -- Registry to use for the controller
-    repository: argoproj/workflow-controller
+    repository: codefresh/workflow-controller
     # -- Image tag for the workflow controller. Defaults to `.Values.images.tag`.
     tag: ""
   # -- parallelism dictates how many workflows can be running at the same time
@@ -212,10 +218,15 @@ controller:
   # -- Default values that will apply to all Workflows from this controller, unless overridden on the Workflow-level.
   # Only valid for 2.7+
   ## See more: https://argo-workflows.readthedocs.io/en/stable/default-workflow-specs/
-  workflowDefaults: {}
-  #   spec:
-  #     ttlStrategy:
-  #       secondsAfterCompletion: 86400
+  workflowDefaults:
+    spec:
+      ttlStrategy:
+        secondsAfterCompletion: 86400
+        secondsAfterFailure: 86400
+
+      podGC:
+        strategy: OnWorkflowCompletion
+
   #     # Ref: https://argo-workflows.readthedocs.io/en/stable/artifact-repository-ref/
   #     artifactRepositoryRef:
   #       configMap: my-artifact-repository # default is "artifact-repositories"
@@ -352,8 +363,7 @@ controller:
     # maxUnavailable: 1
 
   # -- [Node selector]
-  nodeSelector:
-    kubernetes.io/os: linux
+  nodeSelector: {}
   # -- [Tolerations] for use with node taints
   tolerations: []
   # -- Assign custom [affinity] rules
@@ -450,7 +460,7 @@ executor:
     # -- Registry to use for the Workflow Executors
     registry: quay.io
     # -- Repository to use for the Workflow Executors
-    repository: argoproj/argoexec
+    repository: codefresh/argoexec
     # -- Image tag for the workflow executor. Defaults to `.Values.images.tag`.
     tag: ""
     # -- Image PullPolicy to use for the Workflow Executors. Defaults to `.Values.images.pullPolicy`.
@@ -476,7 +486,7 @@ server:
     # -- Registry to use for the server
     registry: quay.io
     # -- Repository to use for the server
-    repository: argoproj/argocli
+    repository: codefresh/argocli
     # -- Image tag for the Argo Workflows server. Defaults to `.Values.images.tag`.
     tag: ""
   # -- optional map of annotations to be applied to the ui Deployment
@@ -574,8 +584,7 @@ server:
     # maxUnavailable: 1
 
   # -- [Node selector]
-  nodeSelector:
-    kubernetes.io/os: linux
+  nodeSelector: {}
 
   # -- [Tolerations] for use with node taints
   tolerations: []
