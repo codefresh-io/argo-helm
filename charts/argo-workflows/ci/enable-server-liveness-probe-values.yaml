@@ -1,0 +1,7 @@
+crds:
+  keep: true
+  install: true
+
+server:
+  livenessProbe:
+    enabled: true
