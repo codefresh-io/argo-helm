@@ -242,8 +242,6 @@ Fields to note:
 | controller.volumeMounts | list | `[]` | Additional volume mounts to the controller main container |
 | controller.volumes | list | `[]` | Additional volumes to the controller pod |
 | controller.workflowDefaults | object | `{"spec":{"podGC":{"strategy":"OnWorkflowCompletion"},"ttlStrategy":{"secondsAfterCompletion":86400,"secondsAfterFailure":86400}}}` | Default values that will apply to all Workflows from this controller, unless overridden on the Workflow-level. Only valid for 2.7+ |
-| controller.workflowDefaults | object | `{}` | Default values that will apply to all Workflows from this controller, unless overridden on the Workflow-level. Only valid for 2.7+ |
-| controller.workflowEvents.enabled | bool | `true` | Enable to emit events on workflow status changes. |
 | controller.workflowNamespaces | list | `["default"]` | Specify all namespaces where this workflow controller instance will manage workflows. This controls where the service account and RBAC resources will be created. Only valid when singleNamespace is false. |
 | controller.workflowRestrictions | object | `{}` | Restricts the Workflows that the controller will process. Only valid for 2.9+ |
 | controller.workflowTTLWorkers | string | `nil` | Number of workflow TTL workers |
@@ -314,14 +312,6 @@ Fields to note:
 | server.ingress.paths | list | `["/"]` | List of ingress paths |
 | server.ingress.tls | list | `[]` | Ingress TLS configuration |
 | server.lifecycle | object | `{}` | Specify postStart and preStop lifecycle hooks for server container |
-| server.livenessProbe.enabled | bool | `false` | Enable Kubernetes liveness probe for server |
-| server.livenessProbe.failureThreshold | int | `3` | Minimum consecutive failures for the [probe] to be considered failed after having succeeded |
-| server.livenessProbe.httpGet.path | string | `"/"` | Http path to use for the liveness probe |
-| server.livenessProbe.httpGet.port | int | `2746` | Http port to use for the liveness probe |
-| server.livenessProbe.initialDelaySeconds | int | `10` | Number of seconds after the container has started before [probe] is initiated |
-| server.livenessProbe.periodSeconds | int | `10` | How often (in seconds) to perform the [probe] |
-| server.livenessProbe.successThreshold | int | `1` | Minimum consecutive successes for the [probe] to be considered successful after having failed |
-| server.livenessProbe.timeoutSeconds | int | `1` | Number of seconds after which the [probe] times out |
 | server.loadBalancerClass | string | `""` | The class of the load balancer implementation |
 | server.loadBalancerIP | string | `""` | Static IP address to assign to loadBalancer service type `LoadBalancer` |
 | server.loadBalancerSourceRanges | list | `[]` | Source ranges to allow access to service from. Only applies to service type `LoadBalancer` |
