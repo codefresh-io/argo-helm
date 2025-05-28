@@ -22,7 +22,7 @@ crds:
   # -- Annotations to be added to all CRDs
   annotations: {}
 
-# -- Create clusterroles that extend existing clusterroles to interact with argo-cd crds
+# -- Create ClusterRoles that extend existing ClusterRoles to interact with Argo Workflows CRDs.
 ## Ref: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles
 createAggregateRoles: true
 
@@ -83,6 +83,8 @@ workflow:
     serviceAccounts: []
       # - name: my-service-account
       #   namespace: my-namespace
+    # -- Additional rules for the service account that runs the workflows.
+    rules: []
 
 controller:
   image:
@@ -634,7 +636,7 @@ server:
   volumes: []
 
   ## Ingress configuration.
-  # ref: https://kubernetes.io/docs/user-guide/ingress/
+  # ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
   ingress:
     # -- Enable an ingress resource
     enabled: false
@@ -720,7 +722,7 @@ server:
 
   # SSO configuration when SSO is specified as a server auth mode.
   sso:
-    # -- Create SSO configuration. If you set `true` , please also set `.Values.server.authMode` as `sso`.
+    # -- Create SSO configuration. If you set `true` , please also set `.Values.server.authModes` as `sso`.
     enabled: false
     # -- The root URL of the OIDC identity provider
     issuer: https://accounts.google.com
@@ -821,6 +823,9 @@ artifactRepository:
     # secretKeySecret:
     #   name: "{{ .Release.Name }}-minio"
     #   key: secretkey
+    # sessionTokenSecret:
+    #   name: "{{ .Release.Name }}-minio"
+    #   key: sessionToken
     # # insecure will disable TLS. Primarily used for minio installs not configured with TLS
     # insecure: false
     # caSecret:
