@@ -1589,6 +1589,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: bumped Argo CD version to v2.14.9-2025-05-29-397c4f0d with mitigated GHSA-2hj5-g64g-fp6p
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v2.14.9-2025-05-29-397c4f0d
+    created: "2025-05-29T09:42:52.039470476Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.33.2
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: f2ff283207aa48786057871a8abeb9f55a78fa59538fa024eb05bbc5467a45d7
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-7.8.23-7-cap-v2.14.9-2025-05-29-397c4f0d/argo-cd-7.8.23-7-cap-v2.14.9-2025-05-29-397c4f0d.tgz
+    version: 7.8.23-7-cap-v2.14.9-2025-05-29-397c4f0d
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: bumped Dex to v2.43.0
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -23297,4 +23332,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2025-05-28T12:38:44.373474554Z"
+generated: "2025-05-29T09:42:52.043066594Z"
