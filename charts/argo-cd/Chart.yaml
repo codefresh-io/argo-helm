@@ -27,4 +27,4 @@ annotations:
     url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: bumped Argo CD version to v2.14.9-2025-05-29-397c4f0d
+      description: bumped Argo CD version to v2.14.9-2025-05-29-397c4f0d with mitigated GHSA-2hj5-g64g-fp6p
