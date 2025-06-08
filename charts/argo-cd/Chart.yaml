@@ -27,4 +27,4 @@ annotations:
     url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: bumped dex version to 2.43.1, bumped redis version to 7.4.4, bumped redis-ha chart version to 4.33.4 
+      description: bumped dex version to 2.43.1, bumped redis version to 7.4.4, bumped redis-ha chart version to 4.33.4
