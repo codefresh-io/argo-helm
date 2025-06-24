@@ -1,9 +1,9 @@
 apiVersion: v2
-appVersion: v3.0.2-2025-06-23-be8d97d9
+appVersion: v3.0.2-2025-06-24-979b8c8e
 kubeVersion: ">=1.25.0-0"
 description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery tool for Kubernetes.
 name: argo-cd
-version: 8.0.6-2-cap-v3.0.2-2025-06-23-be8d97d9
+version: 8.0.6-3-cap-v3.0.2-2025-06-24-979b8c8e
 home: https://github.com/argoproj/argo-helm
 icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
 sources:
@@ -27,4 +27,4 @@ annotations:
     url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Added Github API metrics and fixed flaky e2e tests
+      description: Upgraded ubuntu base image to 25.04 and aligned git-lfs installation with upstream
