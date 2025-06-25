@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: v1.7.2-cap-CR-28008
+appVersion: v1.7.2-cap-CR-29629
 description: A Helm chart for Argo Rollouts
 name: argo-rollouts
-version: 2.37.3-4-v1.7.2-cap-CR-28008
+version: 2.37.3-5-v1.7.2-cap-CR-29629
 home: https://github.com/argoproj/argo-helm
 icon: https://argoproj.github.io/argo-rollouts/assets/logo.png
 keywords:
@@ -19,4 +19,4 @@ annotations:
     url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Add default global tolerations and nodeSelector
+      description: Security fixes for Argo Rollouts v1.7.2
