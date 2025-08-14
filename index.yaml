@@ -1589,6 +1589,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: changed the default image repository in argo-cd tests to bitnamilegacy
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v3.0.2-2025-08-12-9c8dfae9
+    created: "2025-08-14T09:59:37.00904069Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.33.4
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 0a9ba15ef0ecdd7307fb4388e077a1b4f58e9362175fba1d94baddb75cab82d1
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-8.0.6-8-cap-v3.0.2-2025-08-12-9c8dfae9/argo-cd-8.0.6-8-cap-v3.0.2-2025-08-12-9c8dfae9.tgz
+    version: 8.0.6-8-cap-v3.0.2-2025-08-12-9c8dfae9
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: changed the default Redis image repository in CI to bitnamilegacy
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -23761,4 +23796,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2025-08-10T15:29:56.6470496Z"
+generated: "2025-08-14T09:59:37.012631779Z"
