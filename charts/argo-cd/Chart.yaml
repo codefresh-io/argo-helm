@@ -27,4 +27,4 @@ annotations:
     url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: changed the default Redis image repository in argo-cd to bitnamilegacy
+      description: changed the default image repository in argo-cd tests to bitnamilegacy
