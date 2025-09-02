@@ -27,4 +27,4 @@ annotations:
     url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: fixed security advisory GHSA-786q-9hcg-v9ff
+      description: bumps the redis version to the latest 8.x. stable one
