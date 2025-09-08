@@ -1589,6 +1589,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: bumps the redis version to the latest 8.2.1 and argo-cd version to v3.0.2-2025-09-08-9b30d922
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v3.0.2-2025-09-08-9b30d922
+    created: "2025-09-08T12:35:25.500357925Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.33.4
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 009a12db8c210eab7344954fa7e5bac5f91270e48e0a25418ac44a8922a70e9d
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-8.0.6-9-cap-v3.0.2-2025-09-08-9b30d922/argo-cd-8.0.6-9-cap-v3.0.2-2025-09-08-9b30d922.tgz
+    version: 8.0.6-9-cap-v3.0.2-2025-09-08-9b30d922
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: fixed security advisory GHSA-786q-9hcg-v9ff
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -23831,4 +23866,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2025-09-07T07:33:21.332462614Z"
+generated: "2025-09-08T12:35:25.502769597Z"
