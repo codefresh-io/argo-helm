@@ -16929,6 +16929,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: fixed
+          description: fixed security vulnerabilities
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v1.9.2-cap-CR-30841
+    created: "2025-09-09T15:17:51.350381922Z"
+    description: A Helm chart for Argo Events, the event-driven workflow automation
+      framework
+    digest: 640d8fed700c6abe587542ea250b5e25229d6e05957dea2a75b5ecfce2ab393b
+    home: https://github.com/argoproj/argo-helm
+    icon: https://avatars.githubusercontent.com/u/30269780?s=200&v=4
+    keywords:
+    - argoproj
+    - argo-events
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-events
+    sources:
+    - https://github.com/argoproj/argo-events
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-events-2.4.9-cap-CR-30841/argo-events-2.4.9-cap-CR-30841.tgz
+    version: 2.4.9-cap-CR-30841
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
           description: fixed multiple security vulnerabilities
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -23866,4 +23893,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2025-09-08T12:35:25.502769597Z"
+generated: "2025-09-09T15:17:51.353238524Z"
