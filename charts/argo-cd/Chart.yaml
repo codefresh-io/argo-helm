@@ -27,4 +27,4 @@ annotations:
     url: https://argoproj.github.io/argo-helm/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Updates ArgoCD to 3.1.5
+      description: Updates ArgoCD to 3.1.5 and Replace Bitnami dependency used to automatically test this chart
