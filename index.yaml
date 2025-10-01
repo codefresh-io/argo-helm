@@ -1904,6 +1904,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Updates ArgoCD to 3.1.5 and Replace Bitnami dependency used to automatically test this chart
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v3.1.5-2025-09-18-389d4431
+    created: "2025-10-01T07:58:15.980077424Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.33.7
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 2a337ac8bb748dda655fb608cee5d21e180733f120abfcdb10bc72cbe73fe505
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-8.0.6-10-cap-v3.1.5-2025-09-18-389d4431/argo-cd-8.0.6-10-cap-v3.1.5-2025-09-18-389d4431.tgz
+    version: 8.0.6-10-cap-v3.1.5-2025-09-18-389d4431
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Synced argo-cd helm chart base v8.0.6 and argo-cd v3.0.2-2025-06-19-44e87762
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -23943,4 +23978,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2025-09-17T08:44:28.217257036Z"
+generated: "2025-10-01T07:58:15.983159885Z"
