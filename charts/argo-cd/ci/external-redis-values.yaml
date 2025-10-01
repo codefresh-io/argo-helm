@@ -8,7 +8,7 @@ redis-ha:
   enabled: false
 
 externalRedis:
-  host: "redis-master.redis.svc.cluster.local"
+  host: "external-redis.redis.svc.cluster.local"
   password: "argocd"
 
 # needed for correct work of event reporter component
