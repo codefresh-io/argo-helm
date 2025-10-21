@@ -1904,6 +1904,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: fixed CVEs related to webhook and repository credentials
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v3.1.5-2025-10-21-b3254810
+    created: "2025-10-21T13:33:45.817511381Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.33.7
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 34d079c3cd55b8696034bd254075b71c362aee9ff4ed3be3143cba9427eaec13
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-8.0.6-12-cap-v3.1.5-2025-10-21-b3254810/argo-cd-8.0.6-12-cap-v3.1.5-2025-10-21-b3254810.tgz
+    version: 8.0.6-12-cap-v3.1.5-2025-10-21-b3254810
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: backport monorepocontroller annotations to acr controller
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -24013,4 +24048,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2025-10-15T11:03:46.360005404Z"
+generated: "2025-10-21T13:33:45.822078223Z"
