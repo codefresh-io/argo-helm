@@ -2009,6 +2009,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: fixed CVEs related to webhook and repository credentials
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v3.0.2-2025-10-24-afba3263
+    created: "2025-10-27T10:08:13.642214764Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.33.7
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 2070f9eb364ddcff239b246e5bb1e64f2c0cb41cfd2f3a62b329dba2481ad409
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-cd-8.0.6-10-cap-3.0.2-2025-10-24-afba3263/argo-cd-8.0.6-10-cap-3.0.2-2025-10-24-afba3263.tgz
+    version: 8.0.6-10-cap-3.0.2-2025-10-24-afba3263
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Synced argo-cd helm chart base v8.0.6 and argo-cd v3.0.2-2025-06-19-44e87762
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -24048,4 +24083,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2025-10-21T13:33:45.822078223Z"
+generated: "2025-10-27T10:08:13.645760406Z"
