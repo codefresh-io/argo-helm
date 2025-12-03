@@ -18502,6 +18502,32 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Security fixes for Argo Rollouts v1.7.2 k8s client
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v1.7.2-cap-CR-31756
+    created: "2025-12-03T09:15:20.819325293Z"
+    description: A Helm chart for Argo Rollouts
+    digest: 9644dfbd4a246f21150bec99674041be72a9ab1581b3f8922e1ac426af73979c
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-rollouts/assets/logo.png
+    keywords:
+    - argoproj
+    - argo-rollouts
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-rollouts
+    sources:
+    - https://github.com/argoproj/argo-rollouts
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-rollouts-2.37.3-8-v1.7.2-cap-CR-31756/argo-rollouts-2.37.3-8-v1.7.2-cap-CR-31756.tgz
+    version: 2.37.3-8-v1.7.2-cap-CR-31756
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Security fixes for Argo Rollouts v1.7.2 golang/x/net and cloudflare/circl
       artifacthub.io/signKey: |
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
@@ -24177,4 +24203,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2025-11-19T11:14:45.927854299Z"
+generated: "2025-12-03T09:15:20.820918983Z"
