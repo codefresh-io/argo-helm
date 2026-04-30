@@ -1,9 +1,9 @@
 apiVersion: v2
-appVersion: v3.6.7-cap-CR-36597
+appVersion: v3.6.7-cap-CR-38757
 name: argo-workflows
 description: A Helm chart for Argo Workflows
 type: application
-version: 0.45.20-v3.6.7-cap-CR-36597
+version: 0.45.21-v3.6.7-cap-CR-38757
 icon: https://argo-workflows.readthedocs.io/en/stable/assets/logo.png
 home: https://github.com/argoproj/argo-helm
 sources:
