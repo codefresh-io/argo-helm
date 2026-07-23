@@ -20000,6 +20000,30 @@ entries:
         fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
         url: https://argoproj.github.io/argo-helm/pgp_keys.asc
     apiVersion: v2
+    appVersion: v3.6.7-cap-CF-2129
+    created: "2026-07-23T12:08:14.288295236Z"
+    description: A Helm chart for Argo Workflows
+    digest: 4e4b044bcfc34f32c4a4aa1cc6841d8be5b6a0375c0e68d0387ea12b17e46ae6
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-workflows.readthedocs.io/en/stable/assets/logo.png
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - https://github.com/codefresh-io/argo-helm/releases/download/argo-workflows-0.45.24-v3.6.7-cap-CF-2129/argo-workflows-0.45.24-v3.6.7-cap-CF-2129.tgz
+    version: 0.45.24-v3.6.7-cap-CF-2129
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: fixed security vulnerabilities
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
     appVersion: v3.6.7-cap-CFS-7012
     created: "2026-05-28T14:25:20.752591795Z"
     description: A Helm chart for Argo Workflows
@@ -24373,4 +24397,4 @@ entries:
     urls:
     - argocd-notifications-1.0.0.tgz
     version: 1.0.0
-generated: "2026-05-28T14:25:20.754191643Z"
+generated: "2026-07-23T12:08:14.292631663Z"
