@@ -1,0 +1,14 @@
+charts/argo-workflows/Chart.yaml
+  h_51acfbafc7319b 2,6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "dab0490949ee843d55dd66de22bb8c6816791ca6",
+  "prompts": {},
+  "humans": {
+    "h_51acfbafc7319b": {
+      "author": "vitaliichyrka <vitalii.chyrka@codefresh.io>"
+    }
+  }
+}

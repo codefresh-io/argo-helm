@@ -1,0 +1,14 @@
+charts/argo-workflows/Chart.yaml
+  h_104939d4aa3383 2,6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "4e22732bee1cc516b8d7082ab6fd15677650dc39",
+  "prompts": {},
+  "humans": {
+    "h_104939d4aa3383": {
+      "author": "Vasil Sudakou <vasil.sudakov@codefresh.io>"
+    }
+  }
+}
