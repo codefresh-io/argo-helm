@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: v3.6.7-cap-CF-2552
+appVersion: v3.6.7-cap-CF-2552-security
 name: argo-workflows
 description: A Helm chart for Argo Workflows
 type: application
