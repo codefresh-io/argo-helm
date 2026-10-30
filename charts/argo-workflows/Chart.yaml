@@ -1,9 +1,9 @@
 apiVersion: v2
-appVersion: v3.6.7-cap-CFS-16765
+appVersion: v3.6.7-cap-CF-2552-security
 name: argo-workflows
 description: A Helm chart for Argo Workflows
 type: application
-version: 0.45.27-v3.6.7-cap-CFS-16765
+version: 0.45.28-v3.6.7-cap-CF-2552-security
 icon: https://argo-workflows.readthedocs.io/en/stable/assets/logo.png
 home: https://github.com/argoproj/argo-helm
 sources:
